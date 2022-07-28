@@ -12,10 +12,10 @@
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "module": "None",
+    "module": "es6",
     "moduleResolution": "node",
     "isolatedModules": true,
-    "emitDeclarationOnly": true,
+    "declarationMap": true,
     "declaration": true
   },
   "include": [
