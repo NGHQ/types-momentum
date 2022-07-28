@@ -1,0 +1,42 @@
+export enum UserInterest {
+  COMMUNICATION = 'COMMUNICATION',
+  CONSULTING = 'CONSULTING',
+  CRYPTO = 'CRYPTO',
+  EDUCATION = 'EDUCATION',
+  ENERGY = 'ENERGY',
+  ENTERTAINMENT = 'ENTERTAINMENT',
+  FASHION = 'FASHION',
+  FINANCE = 'FINANCE',
+  FOOD = 'FOOD',
+  HEALTH = 'HEALTH',
+  HOSPITALITY = 'HOSPITALITY',
+  MARKETING = 'MARKETING',
+  NON_PROFIT = 'NON_PROFIT',
+  POLITICS = 'POLITICS',
+  REAL_ESTATE = 'REAL_ESTATE',
+  SOCIAL_MEDIA = 'SOCIAL_MEDIA',
+  SUSTAINABILITY = 'SUSTAINABILITY',
+  TECH = 'TECH'
+}
+
+export const defaultUserInterests = {
+  [UserInterest.COMMUNICATION]: false,
+  [UserInterest.CONSULTING]: false,
+  [UserInterest.CRYPTO]: false,
+  [UserInterest.EDUCATION]: false,
+  [UserInterest.ENERGY]: false,
+  [UserInterest.ENTERTAINMENT]: false,
+  [UserInterest.FASHION]: false,
+  [UserInterest.FINANCE]: false,
+  [UserInterest.FOOD]: false,
+  [UserInterest.HEALTH]: false,
+  [UserInterest.HOSPITALITY]: false,
+  [UserInterest.MARKETING]: false,
+  [UserInterest.NON_PROFIT]: false,
+  [UserInterest.POLITICS]: false,
+  [UserInterest.REAL_ESTATE]: false,
+  [UserInterest.SOCIAL_MEDIA]: false,
+  [UserInterest.SUSTAINABILITY]: false,
+  [UserInterest.TECH]: false,
+};
+
