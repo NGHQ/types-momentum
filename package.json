@@ -1,5 +1,5 @@
 {
-  "name": "@nghq/types-momentum",
+  "name": "types-momentum",
   "version": "1.0.0",
   "description": "Momentum Shared Types",
   "main": "lib/index.js",
