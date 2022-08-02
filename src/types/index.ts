@@ -13,10 +13,10 @@ export type UserDocumentData = {
   bio?: string;
   photoUrl?: string
   links?: UserLinks;
-  interests?: UserInterests;
-  helpingHands?: Record<string, string>;
-  preferences?: UserPreferences;
-  conversations?: Record<ConversationId, {lastReadMessageId: MessageId | null}>
+  interests: UserInterests;
+  helpingHands: Record<string, string>;
+  preferences: UserPreferences;
+  conversations: Record<ConversationId, {lastReadMessageId: MessageId | null}>
 }
 
 export type UserPreferences = {
