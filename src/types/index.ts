@@ -53,7 +53,7 @@ export type ConversationDocumentData = {
   createdAt: Timestamp;
   updatedAt: Timestamp;
   roles: Record<UserId, ConversationParticipantRole>;
-  recentMessage: MessageDocumentData & {id: MessageId};
+  recentMessage: (MessageDocumentData & {id: MessageId}) | null;
 }
 
 
