@@ -69,8 +69,8 @@ export type MessageDocumentData = {
 }
 
 export type CommunityDocumentData = {
-  name: string;
-  description: string;
+  displayName: string;
+  bio: string;
   photoUrl: string;
   globalFeed: boolean;
   members: Record<UserId, {
