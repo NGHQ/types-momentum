@@ -5,7 +5,8 @@ import {
   ConversationCategory,
   MessageCategory,
   ConversationParticipantRole,
-  CommunityRole
+  CommunityRole,
+  CommunityStatus
 } from '../enum';
 
 export type UserDocumentData = {
@@ -74,6 +75,7 @@ export type CommunityDocumentData = {
   globalFeed: boolean;
   members: Record<UserId, {
     role: CommunityRole,
+    status: CommunityStatus,
     displayName: string;
     photoUrl: string;
   }>;
