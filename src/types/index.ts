@@ -19,6 +19,10 @@ export type UserDocumentData = {
   helpingHands: Record<string, string>;
   preferences: UserPreferences;
   conversations: Record<ConversationId, {lastReadMessageId: MessageId | null}>
+  communities: Record<CommunityId, {
+    //TODO ->
+  }>
+  defaultCommunity: CommunityId | null;
 }
 
 export type UserPreferences = {
