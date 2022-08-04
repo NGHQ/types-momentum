@@ -4,7 +4,9 @@ import {
   UserInterest,
   ConversationCategory,
   MessageCategory,
-  ConversationParticipantRole
+  ConversationParticipantRole,
+  CommunityRole,
+  CommunityStatus
 } from '../enum';
 
 export type UserDocumentData = {
@@ -17,6 +19,10 @@ export type UserDocumentData = {
   helpingHands: Record<string, string>;
   preferences: UserPreferences;
   conversations: Record<ConversationId, {lastReadMessageId: MessageId | null}>
+  communities: Record<CommunityId, {
+    //TODO ->
+  }>
+  defaultCommunity: CommunityId | null;
 }
 
 export type UserPreferences = {
@@ -44,6 +50,7 @@ export type Flavor<T, Flavor> = T & Flavoring<Flavor>;
 
 export type UserId = Flavor<string, 'UserId'>;
 export type ConversationId = Flavor<string, 'ConversationId'>;
+export type CommunityId = Flavor<string, 'CommunityId'>;
 export type MessageId = Flavor<string, 'MessageId'>;
 
 export type ConversationDocumentData = {
@@ -64,4 +71,17 @@ export type MessageDocumentData = {
   creatorId: UserId;
   creatorDisplayName: string;
   creatorPhotoUrl: string | null;
+}
+
+export type CommunityDocumentData = {
+  displayName: string;
+  bio: string;
+  photoUrl: string;
+  globalFeed: boolean;
+  members: Record<UserId, {
+    role: CommunityRole,
+    status: CommunityStatus,
+    displayName: string;
+    photoUrl: string;
+  }>;
 }
