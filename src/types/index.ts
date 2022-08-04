@@ -46,6 +46,7 @@ export type Flavor<T, Flavor> = T & Flavoring<Flavor>;
 
 export type UserId = Flavor<string, 'UserId'>;
 export type ConversationId = Flavor<string, 'ConversationId'>;
+export type CommunityId = Flavor<string, 'CommunityId'>;
 export type MessageId = Flavor<string, 'MessageId'>;
 
 export type ConversationDocumentData = {
