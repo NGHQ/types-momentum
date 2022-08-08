@@ -1,5 +1,5 @@
 import { UserInterest } from "../enum";
-import { UserDocumentData, CommunityId } from "../types";
+import { UserDocumentData } from "../types";
 
 export const defaultUserInterests = {
   [UserInterest.COMMUNICATION]: false,
@@ -24,11 +24,11 @@ export const defaultUserInterests = {
 
 export const defaultUserDocumentData: Omit<
   UserDocumentData, 
-  'username' |
-  'displayName' |
-  'bio' | 
-  'photoUrl' 
+  'username' 
 > = {
+    bio: null, 
+    displayName: null, 
+    photoUrl: null,
     links: {
       instagram: null, 
       linkedin: null, 

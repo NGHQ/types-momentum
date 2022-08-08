@@ -44,9 +44,9 @@ export type RoleDocumentData = Record<UserId, {
 
 export type UserDocumentData = {
   username: string;
-  displayName?: string;
-  bio?: string;
-  photoUrl?: string
+  displayName: OrNull<string>;
+  bio: OrNull<string>;
+  photoUrl: OrNull<string>;
   links: UserLinks;
   interests: UserInterests;
   helpingHands: Record<string, string>;
