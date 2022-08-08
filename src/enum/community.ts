@@ -3,8 +3,9 @@ export enum CommunityRole {
   COMMUNITY_ADMIN
 }
 
-export enum CommunityStatus {
-  ACTIVE_MEMBER = 1,
-  INACTIVE_MEMBER
+export enum UserCommunityStatus {
+  BLOCKED,
+  INACTIVE,
+  ACTIVE
 }
 
