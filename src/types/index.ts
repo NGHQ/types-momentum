@@ -8,7 +8,7 @@ import {
   MessageCategory,
   ConversationParticipantRole,
   CommunityRole,
-  CommunityStatus,
+  UserCommunityStatus,
   ContentReactionCode,
   ContentCategory
 } from '../enum';
@@ -38,7 +38,7 @@ export type RoleDocumentData = Record<UserId, {
   root: Role;
   communities: Record<CommunityId, {
     role: CommunityRole, 
-    status: CommunityStatus
+    status: UserCommunityStatus
   }>;
 }>;
 
