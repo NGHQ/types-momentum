@@ -6,7 +6,8 @@ import {
   MessageCategory,
   ConversationParticipantRole,
   CommunityRole,
-  CommunityStatus
+  CommunityStatus,
+  Emoji
 } from '../enum';
 
 export type UserDocumentData = {
@@ -20,9 +21,12 @@ export type UserDocumentData = {
   preferences: UserPreferences;
   conversations: Record<ConversationId, {lastReadMessageId: MessageId | null}>
   communities: Record<CommunityId, {
-    //TODO ->
+    displayName: string;
+    photoUrl: string;
   }>
   defaultCommunity: CommunityId | null;
+  role: CommunityRole;
+  status: CommunityStatus;
 }
 
 export type UserPreferences = {
@@ -63,7 +67,6 @@ export type ConversationDocumentData = {
   recentMessage: (MessageDocumentData & {id: MessageId}) | null;
 }
 
-
 export type MessageDocumentData = {
   type: MessageCategory;
   content: string;
@@ -78,10 +81,28 @@ export type CommunityDocumentData = {
   bio: string;
   photoUrl: string;
   globalFeed: boolean;
-  members: Record<UserId, {
-    role: CommunityRole,
-    status: CommunityStatus,
-    displayName: string;
-    photoUrl: string;
-  }>;
+  createdAt: Timestamp;
+  createdBy: UserId;
 }
+
+export type CommunityMetadata = {
+  isImageIncluded: boolean;
+  isVideoIncluded: boolean;
+  isUserTagged: boolean;
+  data: {
+    images?: string[];
+    video?: string;
+    taggedUsers?: UserId[];
+  }
+}
+
+export type PostDocumentData = {
+  createdAt: Timestamp;
+  creatorId: UserId;
+  content?: string;
+  metadata?: CommunityMetadata;
+  reactions?: Record<Emoji, UserId[]>;
+}
+
+export type CommentDocumentData = PostDocumentData;
+export type ReplyDocumentData = PostDocumentData;
