@@ -1,4 +1,4 @@
-import type { Timestamp } from 'firebase/firestore';
+import type { DocumentReference, Timestamp } from 'firebase/firestore';
 
 import {
   UserInterest,
@@ -81,8 +81,9 @@ export type CommunityDocumentData = {
   bio: string;
   photoUrl: string;
   globalFeed: boolean;
-  createdAt: Timestamp;
+  feedRef: DocumentReference;
   createdBy: UserId;
+  createdAt: Timestamp;
 }
 
 export type CommunityMetadata = {
