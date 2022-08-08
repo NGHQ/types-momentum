@@ -5,9 +5,9 @@ export enum ContentCategory {
 }
 
 export enum ContentReactionCode {
-  SPARKLING_HEART = '1F496',
-  RAISING_HANDS = '1F64C',
-  ROCKET = '1F680',
-  THINKING = '1F914',
-  FOLDING_HANDS = '1F64F',
+  SPARKLING_HEART = '\u{1F496}',
+  RAISING_HANDS = '\u{1F64C}',
+  ROCKET = '\u{1F680}',
+  THINKING = '\u{1F914}',
+  FOLDING_HANDS = '\u{1F64F}',
 }
