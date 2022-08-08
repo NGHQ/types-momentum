@@ -1,5 +1,4 @@
-import type { DocumentReference, Timestamp } from 'firebase/firestore';
-
+import type { DocumentReference, Timestamp } from '@firebase/firestore-types';
 
 import {
   Role,
@@ -13,13 +12,14 @@ import {
   ContentCategory
 } from '../enum';
 
+/** Utility */
 export type OrNull<T> = T | null;
 export type Flavoring<Flavor> = {
   _type?: Flavor;
 }
-
 export type Flavor<T, Flavor> = T & Flavoring<Flavor>;
 
+/** Alias */
 export type UserId = Flavor<string, 'UserId'>;
 export type ConversationId = Flavor<string, 'ConversationId'>;
 export type CommunityId = Flavor<string, 'CommunityId'>;
@@ -33,7 +33,7 @@ export type CommentId = Flavor<string, 'CommentId'>
 /** * @description Alias for ContentId */
 export type ReplyId = Flavor<string, 'ReplyId'>;
 
-
+/** Documents */
 export type RoleDocumentData = {
   root: Role;
   communities: Record<CommunityId, {
@@ -52,7 +52,7 @@ export type UserDocumentData = {
   helpingHands: Record<string, string>;
   preferences: UserPreferences;
   conversations: Record<ConversationId, {
-    lastReadMessage: OrNull<DocumentReference<MessageDocumentData>>
+    lastReadMessage: OrNull<DocumentReference<MessageSubDocumentData>>
   }>
   communities: Record<CommunityId, DocumentReference<CommunityDocumentData>>;
   defaultCommunity: OrNull<DocumentReference<CommunityDocumentData>>;
@@ -89,10 +89,10 @@ export type ConversationDocumentData = {
   createdAt: Timestamp;
   updatedAt: Timestamp;
   roles: Record<UserId, ConversationParticipantRole>;
-  recentMessage: OrNull<DocumentReference<MessageDocumentData>>;
+  recentMessage: OrNull<DocumentReference<MessageSubDocumentData>>;
 }
 
-export type MessageDocumentData = {
+export type MessageSubDocumentData = {
   type: MessageCategory;
   content: string;
   createdAt: Timestamp;
