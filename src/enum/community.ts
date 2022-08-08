@@ -8,10 +8,3 @@ export enum CommunityStatus {
   INACTIVE_MEMBER
 }
 
-export enum Emoji {
-  SPARKLING_HEART = 'SPARKLING_HEART',
-  RAISING_HANDS = 'RAISING_HANDS',
-  ROCKET = 'ROCKET',
-  THINKING = 'THINKING',
-  FOLDING_HANDS = 'FOLDING_HANDS',
-}

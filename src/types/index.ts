@@ -7,7 +7,6 @@ import {
   ConversationParticipantRole,
   CommunityRole,
   CommunityStatus,
-  Emoji
 } from '../enum';
 
 export type UserDocumentData = {
@@ -102,7 +101,7 @@ export type PostDocumentData = {
   creatorId: UserId;
   content?: string;
   metadata?: CommunityMetadata;
-  reactions?: Record<Emoji, UserId[]>;
+  reactions?: Record<string, UserId[]>;
 }
 
 export type CommentDocumentData = PostDocumentData;
