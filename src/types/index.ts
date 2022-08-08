@@ -34,13 +34,13 @@ export type CommentId = Flavor<string, 'CommentId'>
 export type ReplyId = Flavor<string, 'ReplyId'>;
 
 
-export type RoleDocumentData = Record<UserId, {
+export type RoleDocumentData = {
   root: Role;
   communities: Record<CommunityId, {
     role: CommunityRole, 
     status: UserCommunityStatus
   }>;
-}>;
+};
 
 export type UserDocumentData = {
   username: string;
