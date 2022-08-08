@@ -21,7 +21,7 @@ type MomentumCollection =
   ConversationDocumentData | 
   FeedDocumentData |
   RoleDocumentData |
-  UserDocumentData  
+  UserDocumentData
 
 type MomentumSubCollection = 
   MessageSubDocumentData | 
@@ -33,7 +33,7 @@ type CollectionPath<T extends MomentumCollection> =
   T extends ConversationDocumentData ? 'conversations' :
   T extends FeedDocumentData ? 'feeds' :
   T extends RoleDocumentData? 'roles' :
-  T extends CommunityDocumentData ? 'users' :
+  T extends UserDocumentData ? 'users' :
   never;
 
 type SubCollectionType<T extends MomentumSubCollection> = 
