@@ -1,4 +1,5 @@
-import type {FirebaseFirestore, QueryDocumentSnapshot} from '@firebase/firestore-types'
+import {Firestore, QueryDocumentSnapshot, PartialWithFieldValue} from '@google-cloud/firestore'
+
 import { ContentCategory } from '../enum';
 import type {
   UserDocumentData,
@@ -9,8 +10,6 @@ import type {
   FeedDocumentData, 
   MessageSubDocumentData, 
   PostSubDocumentData,
-  MessageId,
-  PostId,
   ConversationId,
   FeedId
 } from '../types';
@@ -57,12 +56,12 @@ type SubCollectionType<T extends MomentumSubCollection> =
 
 
 export const typedConverter = <T extends MomentumCollection | MomentumSubCollection>() => ({
-  toFirestore: (data: Partial<T>) => data,
+  toFirestore: (data: PartialWithFieldValue<T>) => data,
   fromFirestore: (snapshot: QueryDocumentSnapshot<T>) => snapshot.data() as T
 }); 
 
 export const momentumCollection = <T extends MomentumCollection, P extends CollectionPath<T> = CollectionPath<T>>(
-  firestore: FirebaseFirestore,
+  firestore: Firestore,
   collectionPath: P
 ) => {
    return () => firestore.collection(collectionPath).withConverter<T>(typedConverter<T>())
@@ -72,7 +71,7 @@ export const momentumSubCollection = <
   T extends MomentumSubCollection,
   S extends SubCollectionType<T> = SubCollectionType<T>, 
 >(
-  firestore: FirebaseFirestore,
+  firestore: Firestore,
   subCollectionPath: S['child'], 
   parentId: S['parentDocId']
 ) => {

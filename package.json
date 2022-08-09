@@ -1,6 +1,6 @@
 {
   "name": "types-momentum",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "description": "Momentum Shared Types",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -8,7 +8,6 @@
     "lib/**/*"
   ],
   "scripts": {
-    "test": "jest --coverage",
     "build": "tsc -p tsconfig.json",
     "prepare": "npm run build",
     "version": "git add -A",
@@ -25,11 +24,10 @@
   },
   "homepage": "https://github.com/NGHQ/types-momentum#readme",
   "dependencies": {
-    "@firebase/firestore-types": "^2.5.0"
+    "@google-cloud/firestore": "^6.0.0"
   },
   "devDependencies": {
     "@types/node": "^17.0.35",
-    "ts-jest": "^28.0.2",
     "ts-node": "^10.7.0",
     "tslib": "^2.4.0",
     "typescript": "^4.6.4"

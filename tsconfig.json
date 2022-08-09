@@ -5,7 +5,6 @@
     "target": "ESNext",
     "types": [
       "node",
-      "jest"
     ],
     "allowJs": true,
     "esModuleInterop": true,

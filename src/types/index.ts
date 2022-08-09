@@ -1,4 +1,4 @@
-import type { DocumentReference, Timestamp } from '@firebase/firestore-types';
+import type { DocumentReference, Timestamp } from '@google-cloud/firestore';
 
 import {
   Role,
@@ -19,7 +19,7 @@ export type Flavoring<Flavor> = {
 }
 export type Flavor<T, Flavor> = T & Flavoring<Flavor>;
 
-/** Alias */
+/** Document ID Aliases */
 export type UserId = Flavor<string, 'UserId'>;
 export type ConversationId = Flavor<string, 'ConversationId'>;
 export type CommunityId = Flavor<string, 'CommunityId'>;
@@ -63,7 +63,6 @@ export type UserCommunity = {
   photoURL: string;
   role: CommunityRole;
 }  
-
 
 export type UserPreferences = {
   notifications: {
