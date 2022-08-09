@@ -95,7 +95,7 @@ export type MessageSubDocumentData = {
   type: MessageCategory;
   content: string;
   createdAt: Timestamp;
-  creatorId: DocumentReference<UserDocumentData>;
+  creatorRef: DocumentReference<UserDocumentData>;
   creatorDisplayName: string;
   creatorPhotoUrl: OrNull<string>
 }
@@ -105,7 +105,7 @@ export type CommunityDocumentData = {
   bio: string;
   photoUrl: string;
   extendsGlobalFeed: boolean;
-  feedId: FeedId;
+  feedId: DocumentReference<FeedDocumentData>;
   createdBy: DocumentReference<UserDocumentData>;
   createdAt: Timestamp;
 }
@@ -122,22 +122,22 @@ export type ContentDocumentData<
 >  = {
   metadata: ContentMetadata;
   category: T;
-  communities: CommunityId[];
+  communities: Record<CommunityId, DocumentReference<CommunityDocumentData>>;
   createdAt: Timestamp;
-  creatorId: UserId;
+  creatorRef: DocumentReference<UserDocumentData>;
   content: OrNull<string>;
   reactions: {
-    [key in ContentReactionCode]: UserId[]
+    [key in ContentReactionCode]: Array<DocumentReference<UserDocumentData>>;
   }
   respondsTo: T extends ContentCategory.POST ?
     null :
     T extends ContentCategory.COMMENT ? 
-      PostId :
-      CommentId;
+      DocumentReference<ContentDocumentData<ContentCategory.POST>> :
+      DocumentReference<ContentDocumentData<ContentCategory.COMMENT>>;
   responses: T extends ContentCategory.POST ?
-    CommentId[] :
+    Array<DocumentReference<ContentDocumentData<ContentCategory.COMMENT>>> :
     T extends ContentCategory.COMMENT ? 
-      ReplyId[] :
+      Array<DocumentReference<ContentDocumentData<ContentCategory.REPLY>>> :
       never[]
 }
 
@@ -147,5 +147,6 @@ export type FeedDocumentData = {
 
 export type PostSubDocumentData = {
   contentRef: DocumentReference<ContentDocumentData<ContentCategory.POST>>;
+  createdAt: Timestamp; 
 }
 
