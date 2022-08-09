@@ -15,24 +15,24 @@ import type {
 } from '../types';
 
 type MomentumCollection =
+  UserDocumentData |
   CommunityDocumentData |
   ContentDocumentData<ContentCategory> | 
   ConversationDocumentData | 
   FeedDocumentData |
-  RoleDocumentData |
-  UserDocumentData
+  RoleDocumentData; 
 
 type MomentumSubCollection = 
   MessageSubDocumentData | 
-  PostSubDocumentData
+  PostSubDocumentData;
 
 type CollectionPath<T extends MomentumCollection> = 
+  T extends UserDocumentData ? 'users' :
   T extends CommunityDocumentData ? 'communities' :
   T extends ContentDocumentData<ContentCategory> ? 'contents' :
   T extends ConversationDocumentData ? 'conversations' :
   T extends FeedDocumentData ? 'feeds' :
   T extends RoleDocumentData? 'roles' :
-  T extends UserDocumentData ? 'users' :
   never;
 
 type SubCollectionType<T extends MomentumSubCollection> = 
@@ -64,7 +64,7 @@ export const momentumCollection = <T extends MomentumCollection, P extends Colle
   firestore: Firestore,
   collectionPath: P
 ) => {
-   return () => firestore.collection(collectionPath).withConverter<T>(typedConverter<T>())
+   return firestore.collection(collectionPath).withConverter<T>(typedConverter<T>());
 }
 
 export const momentumSubCollection = <
@@ -76,13 +76,11 @@ export const momentumSubCollection = <
   parentId: S['parentDocId']
 ) => {
   const p = subCollectionPath === 'messages' ? 'conversations' : 'feeds';
-   return () => (
-    firestore.
+   return firestore.
       collection(p).
       withConverter<S['parentType']>(typedConverter<S['parentType']>()).
       doc(parentId).
       collection(subCollectionPath).
-      withConverter<T>(typedConverter<T>())
-   )
+      withConverter<T>(typedConverter<T>());
 }
 
