@@ -60,27 +60,24 @@ export const typedConverter = <T extends MomentumCollection | MomentumSubCollect
   fromFirestore: (snapshot: QueryDocumentSnapshot<T>) => snapshot.data() as T
 }); 
 
-export const momentumCollection = <T extends MomentumCollection, P extends CollectionPath<T> = CollectionPath<T>>(
+export const momentumCollection = <T extends MomentumCollection>(
   firestore: Firestore,
-  collectionPath: P
+  collectionPath: CollectionPath<T> 
 ) => {
    return firestore.collection(collectionPath).withConverter<T>(typedConverter<T>());
 }
 
-export const momentumSubCollection = <
-  T extends MomentumSubCollection,
-  S extends SubCollectionType<T> = SubCollectionType<T>, 
->(
+
+export const momentumSubCollection = <T extends MomentumSubCollection >(
   firestore: Firestore,
-  subCollectionPath: S['child'], 
-  parentId: S['parentDocId']
+  subCollectionPath: SubCollectionType<T>['child'], 
+  parentId: SubCollectionType<T>['parentDocId']
 ) => {
   const p = subCollectionPath === 'messages' ? 'conversations' : 'feeds';
    return firestore.
       collection(p).
-      withConverter<S['parentType']>(typedConverter<S['parentType']>()).
+      withConverter<SubCollectionType<T>['parentType']>(typedConverter<SubCollectionType<T>['parentType']>()).
       doc(parentId).
       collection(subCollectionPath).
       withConverter<T>(typedConverter<T>());
 }
-
