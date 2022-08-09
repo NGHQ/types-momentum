@@ -14,70 +14,45 @@ import type {
   FeedId
 } from '../types';
 
-type MomentumCollection =
-  UserDocumentData |
-  CommunityDocumentData |
-  ContentDocumentData<ContentCategory> | 
-  ConversationDocumentData | 
-  FeedDocumentData |
-  RoleDocumentData; 
 
-type MomentumSubCollection = 
-  MessageSubDocumentData | 
-  PostSubDocumentData;
-
-type CollectionPath<T extends MomentumCollection> = 
-  T extends UserDocumentData ? 'users' :
-  T extends CommunityDocumentData ? 'communities' :
-  T extends ContentDocumentData<ContentCategory> ? 'contents' :
-  T extends ConversationDocumentData ? 'conversations' :
-  T extends FeedDocumentData ? 'feeds' :
-  T extends RoleDocumentData? 'roles' :
-  never;
-
-type SubCollectionType<T extends MomentumSubCollection> = 
-  T extends MessageSubDocumentData ? {
-    parent: CollectionPath<ConversationDocumentData>;
-    child: 'messages';
-    parentType: ConversationDocumentData;
-    parentDocId: ConversationId;
-  } :
-  T extends PostSubDocumentData ?  {
-    parent: CollectionPath<FeedDocumentData>;
-    child: 'posts';
-    parentType: FeedDocumentData;
-    parentDocId: FeedId;
-  }  : {
-    parent: never;
-    child: never;
-    parentType: never;
-    parentDocId: never;
-  };
-
-
-export const typedConverter = <T extends MomentumCollection | MomentumSubCollection>() => ({
-  toFirestore: (data: PartialWithFieldValue<T>) => data,
-  fromFirestore: (snapshot: QueryDocumentSnapshot<T>) => snapshot.data() as T
-}); 
-
-export const momentumCollection = <T extends MomentumCollection>(
-  firestore: Firestore,
-  collectionPath: CollectionPath<T> 
-) => {
-   return firestore.collection(collectionPath).withConverter<T>(typedConverter<T>());
+export type CollectionPath = {
+  users: UserDocumentData;
+  communities: CommunityDocumentData;
+  contents: ContentDocumentData<ContentCategory>;
+  conversations: ConversationDocumentData;
+  feeds: FeedDocumentData;
+  roles: RoleDocumentData;
 }
 
+export type SubCollectionPath = {
+  messages: MessageSubDocumentData;
+  posts: PostSubDocumentData;
+}
 
-export const momentumSubCollection = <T extends MomentumSubCollection >(
+export type SubCollectionType<T extends keyof SubCollectionPath> = 
+  T extends 'messages' ? {
+    parent: 'conversations'
+    parentType: CollectionPath['conversations'];
+    parentDocId: ConversationId;
+  } : {
+    parent: 'feeds'
+    parentType: CollectionPath['feeds'];
+    parentDocId: FeedId;
+  };
+
+export const rootConverter = <T extends keyof CollectionPath>() => ({
+  toFirestore: (data: PartialWithFieldValue<CollectionPath[T]>) => data,
+  fromFirestore: (snapshot: QueryDocumentSnapshot<CollectionPath[T]>) => snapshot.data() as CollectionPath[T]
+}); 
+
+export const subConverter = <T extends keyof SubCollectionPath>() => ({
+  toFirestore: (data: PartialWithFieldValue<SubCollectionPath[T]>) => data,
+  fromFirestore: (snapshot: QueryDocumentSnapshot<SubCollectionPath[T]>) => snapshot.data() as SubCollectionPath[T]
+}); 
+
+export const momentumCollection = <T extends keyof CollectionPath>(
   firestore: Firestore,
-  subCollectionPath: SubCollectionType<T>['child'], 
-  parentId: SubCollectionType<T>['parentDocId']
+  collectionPath: T
 ) => {
-  const p = subCollectionPath === 'messages' ? 'conversations' : 'feeds';
-   return firestore.
-      collection(p).
-      withConverter<SubCollectionType<T>['parentType']>(typedConverter<SubCollectionType<T>['parentType']>()).
-      doc(parentId).
-      collection(subCollectionPath).
-      withConverter<T>(typedConverter<T>());
+   return firestore.collection(collectionPath).withConverter<CollectionPath[T]>(rootConverter<T>());
 }
