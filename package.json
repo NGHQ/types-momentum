@@ -1,6 +1,6 @@
 {
   "name": "types-momentum",
-  "version": "2.3.3",
+  "version": "2.4.0",
   "description": "Momentum Shared Types",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -24,9 +24,11 @@
   },
   "homepage": "https://github.com/NGHQ/types-momentum#readme",
   "peerDependencies": {
+    "@firebase/firestore": "^3.4.14",
     "@google-cloud/firestore": "^5.0.0"
   },
   "devDependencies": {
-    "@google-cloud/firestore": "^5.0.0"
-  }
+    "@firebase/firestore": "^3.4.14"
+  },
+  "dependencies": {}
 }

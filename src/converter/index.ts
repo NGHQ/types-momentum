@@ -1,4 +1,4 @@
-import {Firestore, QueryDocumentSnapshot, PartialWithFieldValue} from '@google-cloud/firestore'
+import {QueryDocumentSnapshot, PartialWithFieldValue } from '@firebase/firestore';
 
 import type {
   UserDocumentData,
@@ -38,7 +38,7 @@ export type SubCollections = {
 
 export const rootConverter = <T extends keyof RootCollections>() => ({
   toFirestore: (data: PartialWithFieldValue<RootCollections[T]>) => data,
-  fromFirestore: (snapshot: QueryDocumentSnapshot<RootCollections[T]>) => snapshot.data() as RootCollections[T]
+  fromFirestore: (snapshot: QueryDocumentSnapshot<RootCollections[T]>) => snapshot.data() 
 }); 
 
 export const subConverter = <T extends keyof SubCollections>() => ({
@@ -46,10 +46,10 @@ export const subConverter = <T extends keyof SubCollections>() => ({
   fromFirestore: (snapshot: QueryDocumentSnapshot<SubCollections[T]['type']>) => snapshot.data() 
 }); 
 
-export const momentumCollection = <T extends keyof RootCollections>(
-  firestore: Firestore,
-  collectionPath: T
-) => {
-   return firestore.collection(collectionPath).withConverter<RootCollections[T]>(rootConverter<T>());
-}
-
+// TODO Only valid for v9
+// export const momentumCollection = <T extends keyof RootCollections>(
+//   firestore: Firestore,
+//   collectionPath: T
+// ) => {
+//    return firestore.collection(collectionPath).withConverter<RootCollections[T]>(rootConverter<T>());
+// }
