@@ -18,19 +18,18 @@ export type Flavoring<Flavor> = {
   _type?: Flavor;
 }
 export type Flavor<T, Flavor> = T & Flavoring<Flavor>;
+export type SubCollectionOf<P, T> = T & {
+  parentRef: DocumentReference<P>
+}
 
 /** Document ID Aliases */
 export type UserId = Flavor<string, 'UserId'>;
+export type PeerId = Flavor<string, 'UserId'>;
 export type ConversationId = Flavor<string, 'ConversationId'>;
 export type CommunityId = Flavor<string, 'CommunityId'>;
-export type FeedId = Flavor<string, 'FeedId'>;
-export type ContentId = Flavor<string, 'ContentId'>;
 export type MessageId = Flavor<string, 'MessageId'>;
-/** * @description Alias for ContentId */
-export type PostId = Flavor<string, 'ContentId'> 
-/** * @description Alias for ContentId */
+export type PostId = Flavor<string, 'PostId'> 
 export type CommentId = Flavor<string, 'CommentId'> 
-/** * @description Alias for ContentId */
 export type ReplyId = Flavor<string, 'ReplyId'>;
 
 /** Documents */
@@ -105,7 +104,6 @@ export type CommunityDocumentData = {
   bio: string;
   photoUrl: string;
   extendsGlobalFeed: boolean;
-  feedId: DocumentReference<FeedDocumentData>;
   createdBy: DocumentReference<UserDocumentData>;
   createdAt: Timestamp;
 }
@@ -117,36 +115,20 @@ export type ContentMetadata = {
   links: string[];
 }
 
-export type ContentDocumentData<
-  T extends ContentCategory
->  = {
-  metadata: ContentMetadata;
+export type ContentData<T extends ContentCategory> = {
   category: T;
-  communities: Record<CommunityId, DocumentReference<CommunityDocumentData>>;
-  createdAt: Timestamp;
+  metadata: ContentMetadata;
   creatorRef: DocumentReference<UserDocumentData>;
+  createdAt: Timestamp;
   content: OrNull<string>;
   reactions: {
     [key in ContentReactionCode]: Array<DocumentReference<UserDocumentData>>;
-  }
-  respondsTo: T extends ContentCategory.POST ?
-    null :
-    T extends ContentCategory.COMMENT ? 
-      DocumentReference<ContentDocumentData<ContentCategory.POST>> :
-      DocumentReference<ContentDocumentData<ContentCategory.COMMENT>>;
-  responses: T extends ContentCategory.POST ?
-    Array<DocumentReference<ContentDocumentData<ContentCategory.COMMENT>>> :
-    T extends ContentCategory.COMMENT ? 
-      Array<DocumentReference<ContentDocumentData<ContentCategory.REPLY>>> :
-      never[]
+  };
+  
 }
 
-export type FeedDocumentData = {
-  communities: Record<CommunityId, DocumentReference<CommunityDocumentData>>;
-}
+export type PostSubDocumentData = SubCollectionOf<CommunityDocumentData, ContentData<ContentCategory.POST>>;
+export type CommentSubDocumentData = SubCollectionOf<PostSubDocumentData, ContentData<ContentCategory.COMMENT>>;
+export type ReplySubDocumentData = SubCollectionOf<CommentSubDocumentData, ContentData<ContentCategory.REPLY>>;
 
-export type PostSubDocumentData = {
-  contentRef: DocumentReference<ContentDocumentData<ContentCategory.POST>>;
-  createdAt: Timestamp; 
-}
 

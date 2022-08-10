@@ -1,58 +1,55 @@
 import {Firestore, QueryDocumentSnapshot, PartialWithFieldValue} from '@google-cloud/firestore'
 
-import { ContentCategory } from '../enum';
 import type {
   UserDocumentData,
   RoleDocumentData, 
   CommunityDocumentData, 
-  ContentDocumentData, 
   ConversationDocumentData, 
-  FeedDocumentData, 
   MessageSubDocumentData, 
   PostSubDocumentData,
   ConversationId,
-  FeedId
+  CommunityId,
+  PostId,
+  MessageId,
 } from '../types';
 
 
-export type CollectionPath = {
+export type RootCollections = {
   users: UserDocumentData;
   communities: CommunityDocumentData;
-  contents: ContentDocumentData<ContentCategory>;
   conversations: ConversationDocumentData;
-  feeds: FeedDocumentData;
   roles: RoleDocumentData;
 }
 
-export type SubCollectionPath = {
-  messages: MessageSubDocumentData;
-  posts: PostSubDocumentData;
+export type SubCollections = {
+  messages: { 
+    type: MessageSubDocumentData;
+    idFlavor: MessageId;
+    parent: 'conversations';
+    parentIdFlavor: ConversationId
+  }
+  posts:{
+    type: PostSubDocumentData;
+    idFlavor: PostId;
+    parent: 'communities'
+    parentIdFlavor: CommunityId;
+  }
 }
 
-export type SubCollectionType<T extends keyof SubCollectionPath> = 
-  T extends 'messages' ? {
-    parent: 'conversations'
-    parentType: CollectionPath['conversations'];
-    parentDocId: ConversationId;
-  } : {
-    parent: 'feeds'
-    parentType: CollectionPath['feeds'];
-    parentDocId: FeedId;
-  };
-
-export const rootConverter = <T extends keyof CollectionPath>() => ({
-  toFirestore: (data: PartialWithFieldValue<CollectionPath[T]>) => data,
-  fromFirestore: (snapshot: QueryDocumentSnapshot<CollectionPath[T]>) => snapshot.data() as CollectionPath[T]
+export const rootConverter = <T extends keyof RootCollections>() => ({
+  toFirestore: (data: PartialWithFieldValue<RootCollections[T]>) => data,
+  fromFirestore: (snapshot: QueryDocumentSnapshot<RootCollections[T]>) => snapshot.data() as RootCollections[T]
 }); 
 
-export const subConverter = <T extends keyof SubCollectionPath>() => ({
-  toFirestore: (data: PartialWithFieldValue<SubCollectionPath[T]>) => data,
-  fromFirestore: (snapshot: QueryDocumentSnapshot<SubCollectionPath[T]>) => snapshot.data() as SubCollectionPath[T]
+export const subConverter = <T extends keyof SubCollections>() => ({
+  toFirestore: (data: PartialWithFieldValue<SubCollections[T]['type']>) => data,
+  fromFirestore: (snapshot: QueryDocumentSnapshot<SubCollections[T]['type']>) => snapshot.data() 
 }); 
 
-export const momentumCollection = <T extends keyof CollectionPath>(
+export const momentumCollection = <T extends keyof RootCollections>(
   firestore: Firestore,
   collectionPath: T
 ) => {
-   return firestore.collection(collectionPath).withConverter<CollectionPath[T]>(rootConverter<T>());
+   return firestore.collection(collectionPath).withConverter<RootCollections[T]>(rootConverter<T>());
 }
+
