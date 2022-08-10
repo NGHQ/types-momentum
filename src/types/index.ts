@@ -80,7 +80,7 @@ export type UserInterests = {
 }
 
 export type ConversationDocumentData = {
-  type: ConversationCategory;
+  category: ConversationCategory;
   photoUrl: OrNull<string>
   displayName: string;
   createdAt: Timestamp;
@@ -90,7 +90,7 @@ export type ConversationDocumentData = {
 }
 
 export type MessageSubDocumentData = SubCollectionOf<ConversationDocumentData, {
-  type: MessageCategory;
+  category: MessageCategory;
   content: string;
   createdAt: Timestamp;
   creatorRef: DocumentReference<UserDocumentData>;
