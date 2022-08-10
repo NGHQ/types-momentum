@@ -18,19 +18,18 @@ export type Flavoring<Flavor> = {
   _type?: Flavor;
 }
 export type Flavor<T, Flavor> = T & Flavoring<Flavor>;
+export type SubCollectionOf<P, T> = T & {
+  parentRef: DocumentReference<P>
+}
 
 /** Document ID Aliases */
 export type UserId = Flavor<string, 'UserId'>;
+export type PeerId = Flavor<string, 'UserId'>;
 export type ConversationId = Flavor<string, 'ConversationId'>;
 export type CommunityId = Flavor<string, 'CommunityId'>;
-export type FeedId = Flavor<string, 'FeedId'>;
-export type ContentId = Flavor<string, 'ContentId'>;
 export type MessageId = Flavor<string, 'MessageId'>;
-/** * @description Alias for ContentId */
-export type PostId = Flavor<string, 'ContentId'> 
-/** * @description Alias for ContentId */
+export type PostId = Flavor<string, 'PostId'> 
 export type CommentId = Flavor<string, 'CommentId'> 
-/** * @description Alias for ContentId */
 export type ReplyId = Flavor<string, 'ReplyId'>;
 
 /** Documents */
@@ -116,10 +115,9 @@ export type ContentMetadata = {
   links: string[];
 }
 
-export type ContentData<T> = {
-  category: ContentCategory;
+export type ContentData<T extends ContentCategory> = {
+  category: T;
   metadata: ContentMetadata;
-  parentRef: DocumentReference<T>;
   creatorRef: DocumentReference<UserDocumentData>;
   createdAt: Timestamp;
   content: OrNull<string>;
@@ -129,8 +127,8 @@ export type ContentData<T> = {
   
 }
 
-export type PostSubDocumentData = ContentData<CommunityDocumentData>; 
-export type CommentSubDocumentData = ContentData<PostSubDocumentData>; 
-export type ReplySubDocumentData = ContentData<CommentSubDocumentData>;
+export type PostSubDocumentData = SubCollectionOf<CommunityDocumentData, ContentData<ContentCategory.POST>>;
+export type CommentSubDocumentData = SubCollectionOf<PostSubDocumentData, ContentData<ContentCategory.COMMENT>>;
+export type ReplySubDocumentData = SubCollectionOf<CommentSubDocumentData, ContentData<ContentCategory.REPLY>>;
 
 
