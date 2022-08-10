@@ -81,6 +81,7 @@ export type UserInterests = {
 
 export type ConversationDocumentData = {
   category: ConversationCategory;
+  description: OrNull<string>;
   photoUrl: OrNull<string>
   displayName: string;
   createdAt: Timestamp;
