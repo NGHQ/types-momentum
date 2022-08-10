@@ -90,14 +90,14 @@ export type ConversationDocumentData = {
   recentMessage: OrNull<DocumentReference<MessageSubDocumentData>>;
 }
 
-export type MessageSubDocumentData = {
+export type MessageSubDocumentData = SubCollectionOf<ConversationDocumentData, {
   type: MessageCategory;
   content: string;
   createdAt: Timestamp;
   creatorRef: DocumentReference<UserDocumentData>;
   creatorDisplayName: string;
   creatorPhotoUrl: OrNull<string>
-}
+}>
 
 export type CommunityDocumentData = {
   displayName: string;
