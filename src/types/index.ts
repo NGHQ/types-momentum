@@ -105,7 +105,6 @@ export type CommunityDocumentData = {
   bio: string;
   photoUrl: string;
   extendsGlobalFeed: boolean;
-  feedId: DocumentReference<FeedDocumentData>;
   createdBy: DocumentReference<UserDocumentData>;
   createdAt: Timestamp;
 }
@@ -117,36 +116,21 @@ export type ContentMetadata = {
   links: string[];
 }
 
-export type ContentDocumentData<
-  T extends ContentCategory
->  = {
+export type ContentData<T> = {
+  category: ContentCategory;
   metadata: ContentMetadata;
-  category: T;
-  communities: Record<CommunityId, DocumentReference<CommunityDocumentData>>;
-  createdAt: Timestamp;
+  parentRef: DocumentReference<T>;
   creatorRef: DocumentReference<UserDocumentData>;
+  createdAt: Timestamp;
   content: OrNull<string>;
   reactions: {
     [key in ContentReactionCode]: Array<DocumentReference<UserDocumentData>>;
-  }
-  respondsTo: T extends ContentCategory.POST ?
-    null :
-    T extends ContentCategory.COMMENT ? 
-      DocumentReference<ContentDocumentData<ContentCategory.POST>> :
-      DocumentReference<ContentDocumentData<ContentCategory.COMMENT>>;
-  responses: T extends ContentCategory.POST ?
-    Array<DocumentReference<ContentDocumentData<ContentCategory.COMMENT>>> :
-    T extends ContentCategory.COMMENT ? 
-      Array<DocumentReference<ContentDocumentData<ContentCategory.REPLY>>> :
-      never[]
+  };
+  
 }
 
-export type FeedDocumentData = {
-  communities: Record<CommunityId, DocumentReference<CommunityDocumentData>>;
-}
+export type PostSubDocumentData = ContentData<CommunityDocumentData>; 
+export type CommentSubDocumentData = ContentData<PostSubDocumentData>; 
+export type ReplySubDocumentData = ContentData<CommentSubDocumentData>;
 
-export type PostSubDocumentData = {
-  contentRef: DocumentReference<ContentDocumentData<ContentCategory.POST>>;
-  createdAt: Timestamp; 
-}
 
