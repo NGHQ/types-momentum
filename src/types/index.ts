@@ -1,5 +1,4 @@
-import type { DocumentReference, Timestamp } from '@google-cloud/firestore';
-
+import type { DocumentReference, Timestamp } from '@firebase/firestore';
 import {
   Role,
   UserInterest,
