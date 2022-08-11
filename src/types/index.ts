@@ -25,8 +25,6 @@ export type SubCollectionOf<P extends CollectionPaths, T> = T & {
   parentPath: DocPath<P>
 }
 
-
-
 /** Document Aliases */
 export type CollectionPaths = keyof typeof CollectionRootPaths
   | keyof typeof FirstDescendantPaths
@@ -96,7 +94,9 @@ export type ConversationDocumentData = {
   createdAt: Timestamp;
   updatedAt: Timestamp;
   roles: Record<UserId, ConversationParticipantRole>;
-  recentMessage: OrNull<DocPath<'messages'>>;
+  recentMessage: OrNull<MessageSubDocumentData & {
+    path: DocPath<'messages'>;
+  }>
 }
 
 export type MessageSubDocumentData = SubCollectionOf<'conversations', {
