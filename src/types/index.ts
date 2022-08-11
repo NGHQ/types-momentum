@@ -1,4 +1,4 @@
-import type { DocumentReference, Timestamp } from '@firebase/firestore';
+import type { Timestamp } from '@firebase/firestore';
 import {
   Role,
   UserInterest,
@@ -8,7 +8,11 @@ import {
   CommunityRole,
   UserCommunityStatus,
   ContentReactionCode,
-  ContentCategory
+  ContentCategory, 
+  CollectionRootPaths, 
+  FirstDescendantPaths, 
+  SecondDescendantPaths, 
+ ThirdDescendantPaths 
 } from '../enum';
 
 /** Utility */
@@ -17,11 +21,18 @@ export type Flavoring<Flavor> = {
   _type?: Flavor;
 }
 export type Flavor<T, Flavor> = T & Flavoring<Flavor>;
-export type SubCollectionOf<P, T> = T & {
-  parentRef: DocumentReference<P>
+export type SubCollectionOf<P extends CollectionPaths, T> = T & {
+  parentPath: DocPath<P>
 }
 
-/** Document ID Aliases */
+
+
+/** Document Aliases */
+export type CollectionPaths = keyof typeof CollectionRootPaths
+  | keyof typeof FirstDescendantPaths
+  | keyof typeof SecondDescendantPaths
+  | keyof typeof ThirdDescendantPaths
+
 export type UserId = Flavor<string, 'UserId'>;
 export type PeerId = Flavor<string, 'UserId'>;
 export type ConversationId = Flavor<string, 'ConversationId'>;
@@ -30,6 +41,10 @@ export type MessageId = Flavor<string, 'MessageId'>;
 export type PostId = Flavor<string, 'PostId'> 
 export type CommentId = Flavor<string, 'CommentId'> 
 export type ReplyId = Flavor<string, 'ReplyId'>;
+
+export type DocPath<
+  T extends CollectionPaths
+> = Flavor<string, T>;
 
 /** Documents */
 export type RoleDocumentData = {
@@ -50,10 +65,10 @@ export type UserDocumentData = {
   helpingHands: Record<string, string>;
   preferences: UserPreferences;
   conversations: Record<ConversationId, {
-    lastReadMessage: OrNull<DocumentReference<MessageSubDocumentData>>
+    lastReadMessage: OrNull<DocPath<'messages'>>
   }>
-  communities: Record<CommunityId, DocumentReference<CommunityDocumentData>>;
-  defaultCommunity: OrNull<DocumentReference<CommunityDocumentData>>;
+  communities: Record<CommunityId, DocPath<'communities'>>;
+  defaultCommunity: OrNull<DocPath<'communities'>>;
 }
 
 export type UserPreferences = {
@@ -81,14 +96,14 @@ export type ConversationDocumentData = {
   createdAt: Timestamp;
   updatedAt: Timestamp;
   roles: Record<UserId, ConversationParticipantRole>;
-  recentMessage: OrNull<DocumentReference<MessageSubDocumentData>>;
+  recentMessage: OrNull<DocPath<'messages'>>;
 }
 
-export type MessageSubDocumentData = SubCollectionOf<ConversationDocumentData, {
+export type MessageSubDocumentData = SubCollectionOf<'conversations', {
   category: MessageCategory;
   content: string;
   createdAt: Timestamp;
-  creatorRef: DocumentReference<UserDocumentData>;
+  creatorPath: DocPath<'users'>;
   creatorDisplayName: string;
   creatorPhotoUrl: OrNull<string>
 }>
@@ -103,24 +118,24 @@ export type CommunityDocumentData = {
 export type ContentMetadata = {
   imageUrls: string[];
   videoUrl: OrNull<string>;
-  taggedUsers: DocumentReference<UserDocumentData>[];
+  taggedUsers: DocPath<'users'>[];
   links: string[];
 }
 
 export type ContentData<T extends ContentCategory> = {
   category: T;
   metadata: ContentMetadata;
-  creatorRef: DocumentReference<UserDocumentData>;
+  creatorPath: DocPath<'users'>;
   createdAt: Timestamp;
   content: OrNull<string>;
   reactions: {
-    [key in ContentReactionCode]: Array<DocumentReference<UserDocumentData>>;
+    [key in ContentReactionCode]: Array<DocPath<'users'>>;
   };
   
 }
 
-export type PostSubDocumentData = SubCollectionOf<CommunityDocumentData, ContentData<ContentCategory.POST>>;
-export type CommentSubDocumentData = SubCollectionOf<PostSubDocumentData, ContentData<ContentCategory.COMMENT>>;
-export type ReplySubDocumentData = SubCollectionOf<CommentSubDocumentData, ContentData<ContentCategory.REPLY>>;
+export type PostSubDocumentData = SubCollectionOf<'communities', ContentData<ContentCategory.POST>>;
+export type CommentSubDocumentData = SubCollectionOf<'posts', ContentData<ContentCategory.COMMENT>>;
+export type ReplySubDocumentData = SubCollectionOf<'comments', ContentData<ContentCategory.REPLY>>;
 
 

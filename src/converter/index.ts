@@ -1,4 +1,4 @@
-import {QueryDocumentSnapshot, PartialWithFieldValue } from '@firebase/firestore';
+import {Firestore, QueryDocumentSnapshot, PartialWithFieldValue} from '@google-cloud/firestore';
 
 import type {
   UserDocumentData,
@@ -14,14 +14,15 @@ import type {
 } from '../types';
 
 
-export type RootCollections = {
+
+type RootCollections = {
   users: UserDocumentData;
   communities: CommunityDocumentData;
   conversations: ConversationDocumentData;
   roles: RoleDocumentData;
 }
 
-export type SubCollections = {
+type SubCollections = {
   messages: { 
     type: MessageSubDocumentData;
     idFlavor: MessageId;
@@ -46,10 +47,9 @@ export const subConverter = <T extends keyof SubCollections>() => ({
   fromFirestore: (snapshot: QueryDocumentSnapshot<SubCollections[T]['type']>) => snapshot.data() 
 }); 
 
-// TODO Only valid for v9
-// export const momentumCollection = <T extends keyof RootCollections>(
-//   firestore: Firestore,
-//   collectionPath: T
-// ) => {
-//    return firestore.collection(collectionPath).withConverter<RootCollections[T]>(rootConverter<T>());
-// }
+export const momentumCollectionV9 = <T extends keyof RootCollections>(
+  firestore: Firestore,
+  collectionPath: T
+) => {
+   return firestore.collection(collectionPath).withConverter<RootCollections[T]>(rootConverter<T>());
+}

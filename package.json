@@ -1,6 +1,6 @@
 {
   "name": "types-momentum",
-  "version": "2.4.3",
+  "version": "2.5.0",
   "description": "Momentum Shared Types",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -23,12 +23,13 @@
     "url": "https://github.com/NGHQ/types-momentum/issues"
   },
   "homepage": "https://github.com/NGHQ/types-momentum#readme",
-  "peerDependencies": {
+  "optionalDependencies": {
     "@firebase/firestore": "^3.4.14",
     "@google-cloud/firestore": "^5.0.0"
   },
   "devDependencies": {
-    "@firebase/firestore": "^3.4.14"
+    "@firebase/firestore": "^3.4.14",
+    "@google-cloud/firestore": "^5.0.0"
   },
   "dependencies": {}
 }
