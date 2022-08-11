@@ -56,12 +56,6 @@ export type UserDocumentData = {
   defaultCommunity: OrNull<DocumentReference<CommunityDocumentData>>;
 }
 
-export type UserCommunity = {
-  displayName: string;
-  photoURL: string;
-  role: CommunityRole;
-}  
-
 export type UserPreferences = {
   notifications: {
     all: boolean;
@@ -104,8 +98,6 @@ export type CommunityDocumentData = {
   bio: string;
   photoUrl: string;
   extendsGlobalFeed: boolean;
-  createdBy: DocumentReference<UserDocumentData>;
-  createdAt: Timestamp;
 }
 
 export type ContentMetadata = {
