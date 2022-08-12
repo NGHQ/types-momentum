@@ -90,7 +90,7 @@ export type ConversationDocumentData = {
   category: ConversationCategory;
   description: OrNull<string>;
   photoUrl: OrNull<string>
-  displayName: string;
+  displayName: OrNull<string>;
   createdAt: Timestamp;
   updatedAt: Timestamp;
   roles: Record<UserId, ConversationParticipantRole>;
