@@ -1,4 +1,4 @@
-import type { Timestamp } from '@firebase/firestore';
+import type { Timestamp as _Timestamp } from '@firebase/firestore';
 import {
   Role,
   UserInterest,
@@ -24,6 +24,8 @@ export type Flavor<T, Flavor> = T & Flavoring<Flavor>;
 export type SubCollectionOf<P extends CollectionPaths, T> = T & {
   parentPath: DocPath<P>
 }
+
+export type Timestamp = OrNull<_Timestamp>;
 
 /** Document Aliases */
 export type CollectionPaths = keyof typeof CollectionRootPaths
