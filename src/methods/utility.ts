@@ -11,7 +11,8 @@ import {
   PostSubDocumentData, 
   ReplySubDocumentData, 
   Timestamp, 
-  UnNullableTimestamp
+  UnNullableTimestamp,
+  UserId
 } from "../types";
 
 export const getFlavoredValue = <O extends Record<string, unknown>>(
@@ -28,7 +29,7 @@ type ContentCommonPayload = {
     taggedUsers?: DocPath<'users'>[];
     links?: string[];
   }, 
-  creatorPath: DocPath<'users'>;
+  creatorId: UserId;
   createdAt: UnNullableTimestamp;
   content: OrNull<string>;
 }
@@ -54,7 +55,7 @@ type GenerateNewContentReturn<T extends ContentCategory> = (
 );
 
 export const generateNewContent = <T extends ContentCategory>(category: T, payload: GenerateNewContentPayload<T>): GenerateNewContentReturn<T> => {
-  const {communityId, postId, commentId, creatorPath, content} = payload;
+  const {communityId, postId, commentId, creatorId, content} = payload;
   const defaultMetadata: ContentMetadata = {
     imageUrls: [], 
     videoUrl: null, 
@@ -88,7 +89,8 @@ export const generateNewContent = <T extends ContentCategory>(category: T, paylo
   }
 
   const createdAt = payload.createdAt as unknown as Timestamp;
-
+  const creatorPath = `users/${creatorId}`;
+  
   const res: GenerateNewContentReturn<T> = {
     category,
     createdAt, 
