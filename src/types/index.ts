@@ -1,4 +1,4 @@
-import type { Timestamp as _Timestamp } from '@firebase/firestore';
+import type { Timestamp as UnNullableTimestamp } from '@firebase/firestore';
 import {
   Role,
   UserInterest,
@@ -12,7 +12,7 @@ import {
   CollectionRootPaths, 
   FirstDescendantPaths, 
   SecondDescendantPaths, 
- ThirdDescendantPaths 
+  ThirdDescendantPaths 
 } from '../enum';
 
 /** Utility */
@@ -25,7 +25,8 @@ export type SubCollectionOf<P extends CollectionPaths, T> = T & {
   parentPath: DocPath<P>
 }
 
-export type Timestamp = OrNull<_Timestamp>;
+export type { UnNullableTimestamp };
+export type Timestamp = OrNull<UnNullableTimestamp>;
 
 /** Document Aliases */
 export type CollectionPaths = keyof typeof CollectionRootPaths
