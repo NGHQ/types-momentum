@@ -36,12 +36,12 @@ type ContentCommonPayload = {
 
 type GenerateNewContentPayload<T extends ContentCategory> = ContentCommonPayload & (
   T extends ContentCategory.POST ? 
-    { communityId: CommunityId; postId: never; commentId: never } : 
+    { communityId: CommunityId; postId?: null; commentId?: null} : 
     T extends ContentCategory.COMMENT ? 
-      { communityId: CommunityId; postId: PostId; commentId: never } : 
+      { communityId: CommunityId; postId: PostId; commentId?: null} : 
       T extends ContentCategory.REPLY ? 
       { communityId: CommunityId; postId: PostId; commentId: CommentId} :
-      { communityId: never; postId: never ; commentId: never} 
+      { communityId: null; postId: null ; commentId: null} 
 );
 
 type GenerateNewContentReturn<T extends ContentCategory> = (
