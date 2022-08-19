@@ -68,8 +68,7 @@ export type UserDocumentData = {
   conversations: Record<ConversationId, {
     lastReadMessage: OrNull<DocPath<'messages'>>
   }>
-  communities: Record<CommunityId, DocPath<'communities'>>;
-  defaultCommunity: OrNull<DocPath<'communities'>>;
+  defaultCommunity: OrNull<CommunityId>;
 }
 
 export type UserPreferences = {
