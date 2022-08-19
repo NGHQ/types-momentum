@@ -42,7 +42,6 @@ export const defaultUserDocumentData: Omit<
         all: false 
       }
     }, 
-    communities: {}, 
     conversations: {}, 
     defaultCommunity: null, 
 }
