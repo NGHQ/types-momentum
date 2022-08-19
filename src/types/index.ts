@@ -50,10 +50,10 @@ export type DocPath<
 /** Documents */
 export type RoleDocumentData = {
   root: Role;
-  communities: Record<CommunityId, {
+  communities: Readonly<Record<CommunityId, {
     role: CommunityRole, 
     status: UserCommunityStatus
-  }>;
+  }>>;
 };
 
 export type UserDocumentData = {
@@ -63,11 +63,11 @@ export type UserDocumentData = {
   photoUrl: OrNull<string>;
   links: UserLinks;
   interests: UserInterests;
-  helpingHands: Record<string, string>;
+  helpingHands: Readonly<Record<string, string>>;
   preferences: UserPreferences;
-  conversations: Record<ConversationId, {
+  conversations: Readonly<Record<ConversationId, {
     lastReadMessage: OrNull<DocPath<'messages'>>
-  }>
+  }>>
   defaultCommunity: OrNull<CommunityId>;
 }
 
@@ -95,7 +95,7 @@ export type ConversationDocumentData = {
   displayName: OrNull<string>;
   createdAt: Timestamp;
   updatedAt: Timestamp;
-  roles: Record<UserId, ConversationParticipantRole>;
+  roles: Readonly<Record<UserId, ConversationParticipantRole>>;
   recentMessage: OrNull<MessageSubDocumentData & {
     path: DocPath<'messages'>;
   }>
