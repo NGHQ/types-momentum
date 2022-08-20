@@ -13,9 +13,41 @@ import {
   ReplySubDocumentData, 
   Timestamp, 
   UnNullableTimestamp,
-  UserId
+  UserId, 
+  StoreSchema, 
+  EntityWithId
 } from "../types";
 
+/* ------ Generic Redux-Firebase Utilities ------ */
+type EmptyMappedDataGenerator<S extends StoreSchema> = <K extends keyof S>() => Immutable<Record<string, S[K]>>;
+type EmptyMappedOrderedDataGenerator<S extends StoreSchema> = <K extends keyof S>() => Immutable<Array<EntityWithId<S[K]>>>;
+export const createEmptyFirestoreMappedDataGenerator = <
+  MappedData extends StoreSchema
+>(): { 
+  emptyMappedDataOf: EmptyMappedDataGenerator<MappedData>; 
+  emptyMappedOrderedDataOf: EmptyMappedOrderedDataGenerator<MappedData>;
+} => {
+  const emptyMappedDataOf: EmptyMappedDataGenerator<MappedData> = <K extends keyof MappedData>() => {
+    const typedEmptyData: Immutable<Record<string, MappedData[K]>> = {};
+    return typedEmptyData;
+  }
+
+  const emptyMappedOrderedDataOf: EmptyMappedOrderedDataGenerator<MappedData> = <K extends keyof MappedData>() => {
+    const typedEmptyOrderedData: Immutable<Array<EntityWithId<MappedData[K]>>> = [];
+    return typedEmptyOrderedData;
+  }
+  return {
+    emptyMappedDataOf, 
+    emptyMappedOrderedDataOf
+  }
+};
+
+/**
+ * @deprecated Obtain the same result by turning on ts-configurations for `strictNullChecks` & `noUncheckedIndexedAccess`
+ * @param object 
+ * @param id 
+ * @returns typeof obect[id] | undefined
+ */
 export const getFlavoredValue = <O extends Record<string, unknown>>(
   object: O, id: keyof O
 ): Immutable<O[keyof O] | undefined> => {
@@ -23,7 +55,11 @@ export const getFlavoredValue = <O extends Record<string, unknown>>(
   return object[id] as Immutable<O[keyof O] | undefined>;
 };
 
-type ContentCommonPayload = Immutable<{
+
+
+
+/* ----- Momentum Specific Utilities ----- */
+type ContentCommonPayload = {
   metadata?: {
     imageUrls?: string[];
     videoUrls?: string;
@@ -33,7 +69,7 @@ type ContentCommonPayload = Immutable<{
   creatorId: UserId;
   createdAt: UnNullableTimestamp;
   content: OrNull<string>;
-}>;
+};
 
 type GenerateNewContentPayload<T extends ContentCategory> = ContentCommonPayload & (
   T extends ContentCategory.POST ? 
@@ -89,7 +125,7 @@ export const generateNewContent = <T extends ContentCategory>(category: T, paylo
     [ContentReactionCode.FOLDING_HANDS]: [], 
   }
 
-  const createdAt = payload.createdAt as unknown as Timestamp;
+  const createdAt = payload.createdAt
   const creatorPath = `users/${creatorId}`;
   
   const res: GenerateNewContentReturn<T> = {
