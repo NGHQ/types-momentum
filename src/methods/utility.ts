@@ -6,6 +6,7 @@ import {
   ContentData, 
   ContentMetadata, 
   DocPath, 
+  Immutable, 
   OrNull, 
   PostId, 
   PostSubDocumentData, 
@@ -17,12 +18,12 @@ import {
 
 export const getFlavoredValue = <O extends Record<string, unknown>>(
   object: O, id: keyof O
-): O[keyof O] | undefined => {
+): Immutable<O[keyof O] | undefined> => {
 
-  return object[id] as O[keyof O] | undefined;
+  return object[id] as Immutable<O[keyof O] | undefined>;
 };
 
-type ContentCommonPayload = {
+type ContentCommonPayload = Immutable<{
   metadata?: {
     imageUrls?: string[];
     videoUrls?: string;
@@ -32,7 +33,7 @@ type ContentCommonPayload = {
   creatorId: UserId;
   createdAt: UnNullableTimestamp;
   content: OrNull<string>;
-}
+}>;
 
 type GenerateNewContentPayload<T extends ContentCategory> = ContentCommonPayload & (
   T extends ContentCategory.POST ? 
