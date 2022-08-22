@@ -13,14 +13,6 @@ export const CollectionRootPaths = {
 
 export const FirstDescendantPaths = {
   messages: 'conversations', 
-  posts: 'communities', 
-} as const;
-
-export const SecondDescendantPaths = {
-  comments: 'posts'
-} as const;
-
-export const ThirdDescendantPaths = {
-  replies: 'comments'
+  contents: 'communities', 
 } as const;
 

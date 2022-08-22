@@ -18,7 +18,9 @@ import type {
   DocPath,
   SubCollectionOf,
   Timestamp,
-  UserId, 
+  UserId,
+  PostId,
+  CommentId, 
 } from './utility'
 
 export type RoleDocumentData = Immutable<{
@@ -61,6 +63,8 @@ export type UserInterests = Immutable<{
   [key in UserInterest]: boolean;
 }>;
 
+export type PeerDocumentData = Omit<UserDocumentData, 'preferences' | 'conversations'>;
+
 export type ConversationDocumentData = Immutable<{
   category: ConversationCategory;
   description: OrNull<string>;
@@ -78,7 +82,7 @@ export type MessageSubDocumentData = Immutable<SubCollectionOf<'conversations', 
   category: MessageCategory;
   content: string;
   createdAt: Timestamp;
-  creatorPath: DocPath<'users'>;
+  creatorId: UserId;
   creatorDisplayName: string;
   creatorPhotoUrl: OrNull<string>
 }>>;
@@ -93,23 +97,30 @@ export type CommunityDocumentData = Immutable<{
 export type ContentMetadata = Immutable<{
   imageUrls: string[];
   videoUrl: OrNull<string>;
-  taggedUsers: DocPath<'users'>[];
+  taggedUserIds: UserId[];
   links: string[];
 }>;
 
-export type ContentData<T extends ContentCategory> = Immutable<{
+export type ContentData<T extends ContentCategory> = SubCollectionOf<'communities', {
   category: T;
   metadata: ContentMetadata;
-  creatorPath: DocPath<'users'>;
+  creatorId: UserId;
   createdAt: Timestamp;
   content: OrNull<string>;
   reactions: {
-    [key in ContentReactionCode]: Array<DocPath<'users'>>;
+    [key in ContentReactionCode]: UserId[];
   };
+  responseOfId: T extends ContentCategory.POST ? 
+    CommunityId : 
+    T extends ContentCategory.COMMENT ? 
+      PostId : 
+      T extends ContentCategory.REPLY ? 
+        CommentId : 
+        never
 }>;
 
-export type PostSubDocumentData = Immutable<SubCollectionOf<'communities', ContentData<ContentCategory.POST>>>;
-export type CommentSubDocumentData = Immutable<SubCollectionOf<'posts', ContentData<ContentCategory.COMMENT>>>;
-export type ReplySubDocumentData = Immutable<SubCollectionOf<'comments', ContentData<ContentCategory.REPLY>>>;
+export type PostSubDocumentData = ContentData<ContentCategory.POST>;
+export type CommentSubDocumentData = ContentData<ContentCategory.COMMENT>;
+export type ReplySubDocumentData = ContentData<ContentCategory.REPLY>;
 
 

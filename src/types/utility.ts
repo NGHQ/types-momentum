@@ -3,8 +3,6 @@ import type { Timestamp as UnNullableTimestamp } from '@firebase/firestore';
 import {
   CollectionRootPaths, 
   FirstDescendantPaths, 
-  SecondDescendantPaths, 
-  ThirdDescendantPaths 
 } from '../enum';
 
 type ImmutablePrimitive = undefined | null | boolean | string | number | Function;
@@ -33,10 +31,7 @@ export type { UnNullableTimestamp };
 export type Timestamp = OrNull<UnNullableTimestamp>;
 
 /** Document Aliases */
-export type CollectionPaths = keyof typeof CollectionRootPaths
-  | keyof typeof FirstDescendantPaths
-  | keyof typeof SecondDescendantPaths
-  | keyof typeof ThirdDescendantPaths
+export type CollectionPaths = keyof typeof CollectionRootPaths | keyof typeof FirstDescendantPaths;
 
 export type UserId = Flavor<string, 'UserId'>;
 export type PeerId = Flavor<string, 'UserId'>;
