@@ -57,7 +57,7 @@ type ContentCommonPayload<T extends ContentCategory> = {
   metadata?: {
     imageUrls?: string[];
     videoUrls?: string;
-    taggedUsers?: UserId[];
+    taggedUserIds?: UserId[];
     links?: string[];
   }, 
   creatorId: UserId;
