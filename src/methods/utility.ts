@@ -53,7 +53,7 @@ export const getFlavoredValue = <O extends Record<string, unknown>>(
 
 
 /* ----- Momentum Specific Utilities ----- */
-type ContentCommonPayload<T extends ContentCategory> = {
+export type ContentCommonPayload<T extends ContentCategory> = {
   metadata?: {
     imageUrls?: string[];
     videoUrls?: string;
