@@ -1,5 +1,6 @@
 import {
-  TipStoryCategory
+  TipStoryCategory, 
+  TipGenre
 } from '../../enum';
 import { 
   UserId,
@@ -12,6 +13,7 @@ import {
 export type TipDocumentData = Immutable<{
   title: string;
   stories: TipStory[];
+  genre: TipGenre;
 }>; 
 
 export type TipStory = HyperTextTipStory | VideoTipStory | PollTipStory;
