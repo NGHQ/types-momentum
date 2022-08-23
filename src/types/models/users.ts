@@ -61,7 +61,7 @@ export type UserInterests = {
 export type UserTips = {
   streakCount: number;
   lastTipCompletedAt: Timestamp; 
-  lastTipCompletedId: TipId;
+  lastTipCompletedId: OrNull<TipId>;
   record: Record<TipId, {
     completed: boolean;
     completedAt: Timestamp;

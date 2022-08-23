@@ -44,4 +44,11 @@ export const defaultUserDocumentData: Omit<
     }, 
     conversations: {}, 
     defaultCommunity: null, 
+    selectedCommunityId: null, 
+    tips: {
+      streakCount: 0, 
+      lastTipCompletedAt: null, 
+      lastTipCompletedId: null, 
+      record: {}
+    }
 }
