@@ -28,8 +28,9 @@ export type VideoTipStory = {
 
 export type PollTipStory = {
   category: TipStoryCategory.POLL;
-  resultsId: PollId;
+  survey: string; 
   choices: PollChoice[];
+  resultsId: PollId;
 }
 
 export type ChoiceId = Flavor<string, 'ChoiceId'>;
@@ -39,6 +40,7 @@ export type PollChoice = {
 }
 
 export type PollDocumentData = Immutable<{
+  survey: string;
   totalVotes: number;
   results: Record<ChoiceId, PollChoiceResult>;
   ofTipId: TipId;
