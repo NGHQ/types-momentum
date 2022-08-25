@@ -16,6 +16,7 @@ export type TipDocumentData = Immutable<{
   stories: TipStory[];
   genres: TipGenre[];
   communities: CommunityId[];
+  globallyAvailable: boolean;
 }>; 
 
 export type TipStory = HyperTextTipStory | VideoTipStory | PollTipStory;
