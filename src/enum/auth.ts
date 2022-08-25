@@ -1,5 +1,6 @@
 export enum Role {
-  USER = 1,
+  OUTSIDER,
+  USER,
   COMMUNITY_MANAGER,
   ADMIN,
   GOD
