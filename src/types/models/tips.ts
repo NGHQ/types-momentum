@@ -7,13 +7,15 @@ import {
   PollId, 
   Flavor,
   TipId,
-  Immutable
+  Immutable,
+  CommunityId
  } from '../utility';
 
 export type TipDocumentData = Immutable<{
   title: string;
   stories: TipStory[];
-  genre: TipGenre;
+  genres: TipGenre[];
+  communities: CommunityId[];
 }>; 
 
 export type TipStory = HyperTextTipStory | VideoTipStory | PollTipStory;
