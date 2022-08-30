@@ -19,11 +19,11 @@ export type TipDocumentData = Immutable<{
   globallyAvailable: boolean;
 }>; 
 
-export type TipStory = HyperTextTipStory | VideoTipStory | PollTipStory;
+export type TipStory = HyperTextTipStory | VideoTipStory | PollTipStory | VectorGraphicTipStory;
 
 export type HyperTextTipStory = {
   category: TipStoryCategory.HTML;
-  html: string
+  html: string;
 }
 
 export type VideoTipStory = {
@@ -36,6 +36,11 @@ export type PollTipStory = {
   survey: string; 
   choices: PollChoice[];
   resultsId: PollId;
+}
+
+export type VectorGraphicTipStory = {
+  category: TipStoryCategory.SVG;
+  sourceUrl: string;
 }
 
 export type ChoiceId = Flavor<string, 'ChoiceId'>;

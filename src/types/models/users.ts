@@ -25,6 +25,7 @@ export type RoleDocumentData = Immutable<{
 
 export type UserDocumentData = Immutable<{
   username: string;
+  email: string;
   displayName: OrNull<string>;
   bio: OrNull<string>;
   photoUrl: OrNull<string>;
@@ -34,6 +35,7 @@ export type UserDocumentData = Immutable<{
   preferences: UserPreferences;
   conversations: Record<ConversationId, {
     lastReadMessage: OrNull<DocPath<'messages'>>;
+    pinned: boolean; 
   }>;
   selectedCommunityId: OrNull<CommunityId>;
   /**@deprecated use selectedCommunityId */
