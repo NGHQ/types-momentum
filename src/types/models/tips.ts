@@ -8,7 +8,8 @@ import {
   Flavor,
   TipId,
   Immutable,
-  CommunityId
+  CommunityId,
+  Timestamp
  } from '../utility';
 
 export type TipDocumentData = Immutable<{
@@ -17,6 +18,8 @@ export type TipDocumentData = Immutable<{
   genres: TipGenre[];
   communities: CommunityId[];
   globallyAvailable: boolean;
+  createdAt: Timestamp;
+  responseCount: number;
 }>; 
 
 export type TipStory = HyperTextTipStory | VideoTipStory | PollTipStory | VectorGraphicTipStory;
