@@ -25,7 +25,7 @@ type StreakStateAfterCompletionResult = {
 
 export const streakStateAfterCompletion = (
   lastTipCompletedAt: UnNullableTimestamp,
-  timezone: TZCode = 'America/New_York'
+  timezone: TZCode 
 ): StreakStateAfterCompletionResult  => {
   const newLastTipCompletedAt = Timestamp.now();
   const daysDiff = daysDiffFromNow(newLastTipCompletedAt, lastTipCompletedAt, timezone);
@@ -46,4 +46,15 @@ export const streakStateAfterCompletion = (
     default:
       return res('zero')
   }
+}
+
+/**
+ * @description Allows passing IANA Timezone code not listed in TZCode union. Should be used only for dynamically generated codes. 
+ * */
+export const stringIsIanaTimezone = (str: string): TZCode => {
+  const predicateStringIsIanaTimezone = (str: string): str is TZCode => typeof str === 'string';
+
+  if (predicateStringIsIanaTimezone(str)) return str;
+
+  return 'America/New_York';
 }
