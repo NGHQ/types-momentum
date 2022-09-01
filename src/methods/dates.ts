@@ -1,11 +1,21 @@
 import dayjs from "dayjs";
-import { UnNullableTimestamp } from "../types";
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
+
+import type { UnNullableTimestamp, TZCode } from "../types";
 import { Timestamp } from '@firebase/firestore';
 
-export const daysDiffFromNow = (now: UnNullableTimestamp , lastTipCompletedAt: UnNullableTimestamp): number => {
-  const present = dayjs(now.toMillis());
-  const comparator = dayjs(lastTipCompletedAt.toMillis());
-  return present.diff(comparator, 'd');
+dayjs.extend(utc);
+dayjs.extend(timezone);
+
+export const daysDiffFromNow = (
+  now: UnNullableTimestamp,
+  lastTipCompletedAt: UnNullableTimestamp,
+  timezone: TZCode
+): number => {
+  const today = dayjs(now.toMillis()).tz(timezone).startOf('d');
+  const comparator = dayjs(lastTipCompletedAt.toMillis()).tz(timezone).startOf('d');
+  return today.diff(comparator, 'd');
 }
 
 type StreakStateAfterCompletionResult = {
@@ -13,9 +23,12 @@ type StreakStateAfterCompletionResult = {
   streakCountShould: 'stay' | 'zero' | 'increment';
 }
 
-export const streakStateAfterCompletion = (lastTipCompletedAt: UnNullableTimestamp): StreakStateAfterCompletionResult  => {
+export const streakStateAfterCompletion = (
+  lastTipCompletedAt: UnNullableTimestamp,
+  timezone: TZCode = 'America/New_York'
+): StreakStateAfterCompletionResult  => {
   const newLastTipCompletedAt = Timestamp.now();
-  const daysDiff = daysDiffFromNow(newLastTipCompletedAt, lastTipCompletedAt);
+  const daysDiff = daysDiffFromNow(newLastTipCompletedAt, lastTipCompletedAt, timezone);
   const res = (
     streakCountShould: StreakStateAfterCompletionResult['streakCountShould']
   ): StreakStateAfterCompletionResult => {

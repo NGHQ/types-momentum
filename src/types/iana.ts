@@ -1,0 +1,35 @@
+export type TZCode = |
+  'America/Anchorage' |
+  'America/Argentina/Buenos_Aires' |
+  'America/Chicago' |
+  'America/Denver' |
+  'America/Halifax' |
+  'America/Los_Angeles' |
+  'America/New_York' |
+  'America/Sao_Paulo' |
+  'Asia/Bangkok' |
+  'Asia/Calcutta' |
+  'Asia/Dhaka' |
+  'Asia/Dubai' |
+  'Asia/Hong_Kong' |
+  'Asia/Kabul' |
+  'Asia/Kathmandu' |
+  'Asia/Pyongyang' |
+  'Asia/Tokyo' |
+  'Atlantic/Azores' |
+  'Australia/Adelaide' |
+  'Australia/Brisbane' |
+  'Australia/Darwin' |
+  'Australia/Sydney' |
+  'Europe/Berlin' |
+  'Europe/Helsinki' |
+  'Europe/Istanbul' |
+  'Europe/London' |
+  'Indian/Cocos' |
+  'Indian/Maldives' |
+  'Pacific/Auckland' |
+  'Pacific/Honolulu' |
+  'Pacific/Kiritimati' |
+  'Pacific/Nauru' |
+  'Pacific/Pago_Pago' |
+  'Pacific/Tahiti';
