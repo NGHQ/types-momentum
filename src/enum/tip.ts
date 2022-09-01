@@ -12,5 +12,6 @@ export enum TipGenre {
 export enum TipStoryCategory {
   HTML, 
   VIDEO, 
-  POLL
+  POLL, 
+  SVG
 }

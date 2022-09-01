@@ -8,7 +8,8 @@ import {
   Flavor,
   TipId,
   Immutable,
-  CommunityId
+  CommunityId,
+  Timestamp
  } from '../utility';
 
 export type TipDocumentData = Immutable<{
@@ -17,13 +18,15 @@ export type TipDocumentData = Immutable<{
   genres: TipGenre[];
   communities: CommunityId[];
   globallyAvailable: boolean;
+  createdAt: Timestamp;
+  responseCount: number;
 }>; 
 
-export type TipStory = HyperTextTipStory | VideoTipStory | PollTipStory;
+export type TipStory = HyperTextTipStory | VideoTipStory | PollTipStory | VectorGraphicTipStory;
 
 export type HyperTextTipStory = {
   category: TipStoryCategory.HTML;
-  html: string
+  html: string;
 }
 
 export type VideoTipStory = {
@@ -36,6 +39,11 @@ export type PollTipStory = {
   survey: string; 
   choices: PollChoice[];
   resultsId: PollId;
+}
+
+export type VectorGraphicTipStory = {
+  category: TipStoryCategory.SVG;
+  sourceUrl: string;
 }
 
 export type ChoiceId = Flavor<string, 'ChoiceId'>;
