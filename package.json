@@ -31,5 +31,7 @@
     "@firebase/firestore": "^3.4.14",
     "@google-cloud/firestore": "^5.0.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "dayjs": "^1.11.5"
+  }
 }
