@@ -18,6 +18,14 @@ export type ImmutableMap<K, V> = ReadonlyMap<Immutable<K>, Immutable<V>>;
 export type ImmutableSet<T> = ReadonlySet<Immutable<T>>;
 export type ImmutableObject<T> = { readonly [K in keyof T]: Immutable<T[K]> };
 
+export type Mutable<T> = 
+  T extends ImmutablePrimitive ? T :
+  T extends ImmutableArray<infer U> ? Array<U> :
+  T extends ImmutableMap<infer K, infer V> ? Map<K, V> :
+  T extends ImmutableSet<infer M> ? Set<M> : MutableObject<T>;
+
+export type MutableObject<T> = { [K in keyof T]: Mutable<T[K]> };
+
 export type OrNull<T> = T | null;
 
 export type SubCollectionOf<P extends CollectionPaths, T> = T & {
