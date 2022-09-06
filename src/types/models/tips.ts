@@ -14,6 +14,7 @@ import {
 
 export type TipDocumentData = Immutable<{
   title: string;
+  isDraft: boolean;
   stories: TipStory[];
   genres: TipGenre[];
   communities: CommunityId[];

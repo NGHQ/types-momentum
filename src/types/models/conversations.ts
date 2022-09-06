@@ -1,4 +1,5 @@
 import {
+  ContentReactionCode,
   ConversationCategory,
   ConversationParticipantRole,
   MessageCategory, 
@@ -16,14 +17,14 @@ import type {
 export type ConversationDocumentData = Immutable<{
   category: ConversationCategory;
   description: OrNull<string>;
-  photoUrl: OrNull<string>
+  photoUrl: OrNull<string>;
   displayName: OrNull<string>;
   createdAt: Timestamp;
   updatedAt: Timestamp;
   roles: Record<UserId, ConversationParticipantRole>;
   recentMessage: OrNull<MessageSubDocumentData & {
     path: DocPath<'messages'>;
-  }>
+  }>;
 }>;
 
 export type MessageSubDocumentData = Immutable<SubCollectionOf<'conversations', {
@@ -32,5 +33,8 @@ export type MessageSubDocumentData = Immutable<SubCollectionOf<'conversations', 
   createdAt: Timestamp;
   creatorId: UserId;
   creatorDisplayName: string;
-  creatorPhotoUrl: OrNull<string>
+  creatorPhotoUrl: OrNull<string>;
+  reactions: {
+    [key in ContentReactionCode]: UserId[];
+  };
 }>>;
