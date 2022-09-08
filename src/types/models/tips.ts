@@ -1,6 +1,5 @@
 import {
   TipStoryCategory, 
-  TipGenre
 } from '../../enum';
 import { 
   UserId,
@@ -17,8 +16,9 @@ export type TipDocumentData = Immutable<{
   title: string;
   isDraft: boolean;
   stories: TipStory[];
-  /** @todo Remove Tip Genre after  */
-  genres: TipGenre[] | GenreId[];
+  genres: Record<GenreId, {
+    title: string
+  }>;
   communities: CommunityId[];
   globallyAvailable: boolean;
   createdAt: Timestamp;
@@ -69,10 +69,11 @@ export type PollChoiceResult = PollChoice & {
 
 export type GenreDocumentData = Immutable<{
   title: string;
-  dafaultCommunity: OrNull<CommunityId>;
+  exclusiveToCommunity: CommunityId[];
   globallyAvailable: boolean;
-  createdAt: Timestamp;
+  thumbnailUrl: string;
   creatorId: UserId;
+  createdAt: Timestamp;
 }>
 
 export type GenreId = Flavor<string, 'GenreId'>
