@@ -17,7 +17,8 @@ export type TipDocumentData = Immutable<{
   title: string;
   isDraft: boolean;
   stories: TipStory[];
-  genres: TipGenre[];
+  /** @todo Remove Tip Genre after  */
+  genres: TipGenre[] | GenreId[];
   communities: CommunityId[];
   globallyAvailable: boolean;
   createdAt: Timestamp;
