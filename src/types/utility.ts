@@ -26,6 +26,12 @@ export type Mutable<T> =
 
 export type MutableObject<T> = { [K in keyof T]: Mutable<T[K]> };
 
+type ArrayLengthMutationKeys = 'splice' | 'push' | 'pop' | 'shift' | 'unshift' | number
+type ArrayItems<T extends Array<unknown>> = T extends Array<infer TItems> ? TItems : never
+export type FixedLengthArray<T extends unknown[]> =
+  Pick<T, Exclude<keyof T, ArrayLengthMutationKeys>>
+  & { [Symbol.iterator]: () => IterableIterator< ArrayItems<T> > }
+
 export type OrNull<T> = T | null;
 
 export type SubCollectionOf<P extends CollectionPaths, T> = T & {
@@ -62,5 +68,5 @@ export type MessageId = DocumentId<'MessageId'>;
 
 export type TipId = DocumentId<'TipId'>;
 export type PollId = DocumentId<'PollId'>;
-
+export type GenreId = Flavor<string, 'GenreId'>
 

@@ -13,6 +13,7 @@ import type {
   DocPath,
   TipId,
   Timestamp,
+  FixedLengthArray,
 } from './../utility'
 
 export type RoleDocumentData = Immutable<{
@@ -62,6 +63,15 @@ export type UserInterests = {
 
 export type UserTips = {
   streakCount: number;
+  runningStreak: FixedLengthArray<[
+    boolean, 
+    boolean, 
+    boolean, 
+    boolean, 
+    boolean, 
+    boolean, 
+    boolean, 
+  ]>;
   lastTipCompletedAt: Timestamp; 
   lastTipCompletedId: OrNull<TipId>;
   record: Record<TipId, {

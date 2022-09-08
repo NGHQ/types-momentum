@@ -4,12 +4,12 @@ import {
 import { 
   UserId,
   PollId, 
+  GenreId,
   Flavor,
   TipId,
   Immutable,
   CommunityId,
   Timestamp,
-  OrNull
  } from '../utility';
 
 export type TipDocumentData = Immutable<{
@@ -49,6 +49,9 @@ export type VectorGraphicTipStory = {
   sourceUrl: string;
 }
 
+/**
+ * @description Psuedo ID: ChoiceId is not a document ID
+ */
 export type ChoiceId = Flavor<string, 'ChoiceId'>;
 export type PollChoice = {
   id: ChoiceId;
@@ -69,11 +72,17 @@ export type PollChoiceResult = PollChoice & {
 
 export type GenreDocumentData = Immutable<{
   title: string;
-  exclusiveToCommunity: CommunityId[];
-  globallyAvailable: boolean;
   thumbnailUrl: string;
   creatorId: UserId;
   createdAt: Timestamp;
-}>
-
-export type GenreId = Flavor<string, 'GenreId'>
+}> & (
+  Immutable<{
+    globallyAvailable: true;
+    exclusiveToCommunities: never[];
+  }> 
+  |
+  Immutable<{
+    globallyAvailable: false;
+    exclusiveToCommunities: CommunityId[];
+  }>
+);

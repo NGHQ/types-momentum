@@ -50,6 +50,15 @@ export const defaultUserDocumentData: Omit<
       streakCount: 0, 
       lastTipCompletedAt: null, 
       lastTipCompletedId: null, 
-      record: {}
+      record: {}, 
+      runningStreak: [
+        false, 
+        false, 
+        false, 
+        false, 
+        false, 
+        false, 
+        false
+      ]
     }
 }

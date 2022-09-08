@@ -2,7 +2,7 @@ import dayjs from "dayjs";
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
 
-import type { UnNullableTimestamp, TZCode, Timestamp as NullableTimestamp } from "../types";
+import type { UnNullableTimestamp, TZCode, Timestamp as NullableTimestamp, UserTips } from "../types";
 import { Timestamp } from '@firebase/firestore';
 
 dayjs.extend(utc);
@@ -32,20 +32,24 @@ export const daysDiffFromNow = (
 type StreakStateAfterCompletionResult = {
   newLastTipCompletedAt: UnNullableTimestamp;
   streakCountShould: 'stay' | 'zero' | 'increment';
+  newRunningStreak: UserTips['runningStreak'];
 }
 
 export const streakStateAfterCompletion = (
   lastTipCompletedAt: UnNullableTimestamp,
+  runningStreak: UserTips['runningStreak'],
   timezone: TZCode 
 ): StreakStateAfterCompletionResult  => {
   const newLastTipCompletedAt = Timestamp.now();
   const daysDiff = daysDiffFromNow(newLastTipCompletedAt, lastTipCompletedAt, timezone);
+  const newRunningStreak = getRunningStreak(runningStreak, daysDiff, true);
   const res = (
     streakCountShould: StreakStateAfterCompletionResult['streakCountShould']
   ): StreakStateAfterCompletionResult => {
     return {
       newLastTipCompletedAt, 
-      streakCountShould
+      streakCountShould, 
+      newRunningStreak
     }
   };
 
@@ -59,6 +63,25 @@ export const streakStateAfterCompletion = (
   }
 }
 
+/**
+ * @deprecated 
+ * @draft function in development
+ */
+export const getRunningStreak = (runningStreak: UserTips['runningStreak'], daysDiff: number, updateForToday: boolean = false) => {
+  const mutable: boolean[] = [...runningStreak];
+  let n = daysDiff;
+  while (n > 1) {
+    mutable.unshift(false);
+    mutable.pop();
+  }
+
+  if (updateForToday) {
+    mutable.unshift(true);
+    mutable.pop();
+  }
+
+  return mutable as unknown as UserTips['runningStreak'];
+}
 
 export const formatCreationTimestamp = (
   createdAt: NullableTimestamp,
