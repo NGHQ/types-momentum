@@ -9,7 +9,8 @@ import {
   TipId,
   Immutable,
   CommunityId,
-  Timestamp
+  Timestamp,
+  OrNull
  } from '../utility';
 
 export type TipDocumentData = Immutable<{
@@ -64,3 +65,13 @@ export type PollChoiceResult = PollChoice & {
   votes: number;
   voters: UserId[];
 }
+
+export type GenreDocumentData = Immutable<{
+  title: string;
+  dafaultCommunity: OrNull<CommunityId>;
+  globallyAvailable: boolean;
+  createdAt: Timestamp;
+  creatorId: UserId;
+}>
+
+export type GenreId = Flavor<string, 'GenreId'>

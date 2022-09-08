@@ -1,3 +1,6 @@
+/** 
+ * @deprecated Use Tip Genre Document Data instead.
+ * */
 export enum TipGenre {
   CAREER_PLANNING = 'Career Planning',
   COMMUNICATION = 'Communication',
