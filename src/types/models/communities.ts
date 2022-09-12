@@ -3,7 +3,6 @@ import {
   ContentReactionCode,
 } from '../../enum';
 import type {
-  Immutable,
   OrNull, 
   CommunityId, 
   SubCollectionOf,
@@ -14,12 +13,12 @@ import type {
 } from '../utility'
 
 
-export type CommunityDocumentData = Immutable<{
+export type CommunityDocumentData = {
   displayName: string;
   bio: string;
   photoUrl: string;
   extendsGlobalFeed: boolean;
-}>;
+};
 
 export type ContentMetadata = {
   imageUrls: string[];
@@ -28,15 +27,17 @@ export type ContentMetadata = {
   links: string[];
 };
 
+export type Reactions = {
+  [key in ContentReactionCode]: UserId[];
+}
+
 export type ContentData<T extends ContentCategory> = SubCollectionOf<'communities', {
   category: T;
   metadata: ContentMetadata;
   creatorId: UserId;
   createdAt: Timestamp;
   content: OrNull<string>;
-  reactions: {
-    [key in ContentReactionCode]: UserId[];
-  };
+  reactions: Reactions;
   responseOfId: T extends ContentCategory.POST ? 
     CommunityId : 
     T extends ContentCategory.COMMENT ? 
@@ -46,8 +47,8 @@ export type ContentData<T extends ContentCategory> = SubCollectionOf<'communitie
         never
 }>;
 
-export type PostSubDocumentData = Immutable<ContentData<ContentCategory.POST>>;
-export type CommentSubDocumentData = Immutable<ContentData<ContentCategory.COMMENT>>;
-export type ReplySubDocumentData = Immutable<ContentData<ContentCategory.REPLY>>;
+export type PostSubDocumentData = ContentData<ContentCategory.POST>;
+export type CommentSubDocumentData = ContentData<ContentCategory.COMMENT>;
+export type ReplySubDocumentData = ContentData<ContentCategory.REPLY>;
 
 

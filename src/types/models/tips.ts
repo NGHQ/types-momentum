@@ -7,12 +7,11 @@ import {
   GenreId,
   Flavor,
   TipId,
-  Immutable,
   CommunityId,
   Timestamp,
  } from '../utility';
 
-export type TipDocumentData = Immutable<{
+export type TipDocumentData = {
   title: string;
   isDraft: boolean;
   stories: TipStory[];
@@ -23,7 +22,7 @@ export type TipDocumentData = Immutable<{
   globallyAvailable: boolean;
   createdAt: Timestamp;
   responseCount: number;
-}>; 
+}; 
 
 export type TipStory = HyperTextTipStory | VideoTipStory | PollTipStory | VectorGraphicTipStory;
 
@@ -58,31 +57,31 @@ export type PollChoice = {
   choice: string;
 }
 
-export type PollDocumentData = Immutable<{
+export type PollDocumentData = {
   survey: string;
   totalVotes: number;
   results: Record<ChoiceId, PollChoiceResult>;
   ofTipId: TipId;
-}>
+};
 
 export type PollChoiceResult = PollChoice & {
   votes: number;
   voters: UserId[];
 }
 
-export type GenreDocumentData = Immutable<{
+export type GenreDocumentData = {
   title: string;
   thumbnailUrl: string;
   creatorId: UserId;
   createdAt: Timestamp;
-}> & (
-  Immutable<{
+} & (
+  {
     globallyAvailable: true;
     exclusiveToCommunities: never[];
-  }> 
+  } 
   |
-  Immutable<{
+  {
     globallyAvailable: false;
     exclusiveToCommunities: CommunityId[];
-  }>
+  }
 );

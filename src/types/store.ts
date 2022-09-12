@@ -1,5 +1,4 @@
 import {
-  Immutable,
   OrNull,
 } from './utility';
 
@@ -21,7 +20,7 @@ export type FirestoreOrderedData<ProducedByOpenQuery extends StoreSchema, Produc
 export type FirestoreState<
   MappedDatas extends StoreSchema,
   DirectData extends StoreSchema
-> = Immutable<{
+> = {
   data: Partial<FirestoreData<MappedDatas, DirectData>>;
   ordered: Partial<FirestoreOrderedData<MappedDatas, DirectData>>;
   errors: {
@@ -34,9 +33,9 @@ export type FirestoreState<
     requesting: Record<string, boolean>; 
     timestamps: Record<string, number>;
   };
-}>;
+};
 
-export type FirebaseState<ProfileDocument> = Immutable<{
+export type FirebaseState<ProfileDocument> = {
   auth: AuthState;
   profile: Profile<ProfileDocument>;
   authError: unknown;
@@ -46,7 +45,7 @@ export type FirebaseState<ProfileDocument> = Immutable<{
   requested:  Record<string, boolean>;
   requesting: Record<string, boolean>; 
   timestamps: Record<string, number>;
-}>;
+};
 
 export type AuthState = UserInfo & {
   isLoaded: boolean

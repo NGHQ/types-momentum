@@ -6,7 +6,6 @@ import {
 } from '../../enum';
 
 import type {
-  Immutable,
   OrNull, 
   CommunityId, 
   ConversationId, 
@@ -16,15 +15,15 @@ import type {
   FixedLengthArray,
 } from './../utility'
 
-export type RoleDocumentData = Immutable<{
+export type RoleDocumentData = {
   root: Role;
   communities: Record<CommunityId, {
     role: CommunityRole, 
     status: UserCommunityStatus
   }>;
-}>;
+};
 
-export type UserDocumentData = Immutable<{
+export type UserDocumentData = {
   username: string;
   email: string;
   displayName: OrNull<string>;
@@ -42,7 +41,7 @@ export type UserDocumentData = Immutable<{
   /**@deprecated use selectedCommunityId */
   defaultCommunity: OrNull<CommunityId>;
   tips: UserTips;
-}>
+};
 
 export type UserPreferences = {
   notifications: {

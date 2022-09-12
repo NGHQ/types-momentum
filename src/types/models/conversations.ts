@@ -3,18 +3,19 @@ import {
   ConversationCategory,
   ConversationParticipantRole,
   MessageCategory, 
-
 } from '../../enum';
 import type {
-  Immutable,
   OrNull, 
   DocPath,
   SubCollectionOf,
   Timestamp,
   UserId,
 } from '../utility'
+import type {
+  Reactions
+} from './communities';
 
-export type ConversationDocumentData = Immutable<{
+export type ConversationDocumentData = {
   category: ConversationCategory;
   description: OrNull<string>;
   photoUrl: OrNull<string>;
@@ -25,16 +26,14 @@ export type ConversationDocumentData = Immutable<{
   recentMessage: OrNull<MessageSubDocumentData & {
     path: DocPath<'messages'>;
   }>;
-}>;
+};
 
-export type MessageSubDocumentData = Immutable<SubCollectionOf<'conversations', {
+export type MessageSubDocumentData = SubCollectionOf<'conversations', {
   category: MessageCategory;
   content: string;
   createdAt: Timestamp;
   creatorId: UserId;
   creatorDisplayName: string;
   creatorPhotoUrl: OrNull<string>;
-  reactions: {
-    [key in ContentReactionCode]: UserId[];
-  };
-}>>;
+  reactions: Reactions;
+}>;

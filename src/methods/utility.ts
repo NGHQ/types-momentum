@@ -4,7 +4,6 @@ import {
   CommunityId, 
   ContentData, 
   ContentMetadata, 
-  Immutable, 
   OrNull, 
   PostId, 
   UnNullableTimestamp,
@@ -14,8 +13,8 @@ import {
 } from "../types";
 
 /* ------ Generic Redux-Firebase Utilities ------ */
-type EmptyMappedDataGenerator<S extends StoreSchema> = <K extends keyof S>() => Immutable<Record<string, S[K]>>;
-type EmptyMappedOrderedDataGenerator<S extends StoreSchema> = <K extends keyof S>() => Immutable<Array<EntityWithId<S[K]>>>;
+type EmptyMappedDataGenerator<S extends StoreSchema> = <K extends keyof S>() => Record<string, S[K]>;
+type EmptyMappedOrderedDataGenerator<S extends StoreSchema> = <K extends keyof S>() => Array<EntityWithId<S[K]>>;
 export const createEmptyFirestoreMappedDataGenerator = <
   MappedData extends StoreSchema
 >(): { 
@@ -23,12 +22,12 @@ export const createEmptyFirestoreMappedDataGenerator = <
   emptyMappedOrderedDataOf: EmptyMappedOrderedDataGenerator<MappedData>;
 } => {
   const emptyMappedDataOf: EmptyMappedDataGenerator<MappedData> = <K extends keyof MappedData>() => {
-    const typedEmptyData: Immutable<Record<string, MappedData[K]>> = {};
+    const typedEmptyData: Record<string, MappedData[K]> = {};
     return typedEmptyData;
   }
 
   const emptyMappedOrderedDataOf: EmptyMappedOrderedDataGenerator<MappedData> = <K extends keyof MappedData>() => {
-    const typedEmptyOrderedData: Immutable<Array<EntityWithId<MappedData[K]>>> = [];
+    const typedEmptyOrderedData: Array<EntityWithId<MappedData[K]>> = [];
     return typedEmptyOrderedData;
   }
   return {
@@ -45,9 +44,9 @@ export const createEmptyFirestoreMappedDataGenerator = <
  */
 export const getFlavoredValue = <O extends Record<string, unknown>>(
   object: O, id: keyof O
-): Immutable<O[keyof O] | undefined> => {
+): O[keyof O] | undefined => {
 
-  return object[id] as Immutable<O[keyof O] | undefined>;
+  return object[id] as O[keyof O] | undefined;
 };
 
 
@@ -75,7 +74,7 @@ export type ContentCommonPayload<T extends ContentCategory> = {
 
 
 
-export const generateNewContent = <T extends Immutable<ContentCategory>>(category: T, payload: ContentCommonPayload<T>): ContentData<T> => {
+export const generateNewContent = <T extends ContentCategory>(category: T, payload: ContentCommonPayload<T>): ContentData<T> => {
   const {creatorId, content, communityId, createdAt, responseOfId} = payload;
   const defaultMetadata: ContentMetadata = {
     imageUrls: [], 
