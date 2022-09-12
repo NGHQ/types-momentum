@@ -77,7 +77,7 @@ export type GenreDocumentData = {
 } & (
   {
     globallyAvailable: true;
-    exclusiveToCommunities: never[];
+    exclusiveToCommunities: ['global'];
   } 
   |
   {
