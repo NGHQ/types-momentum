@@ -48,6 +48,7 @@ export const defaultUserDocumentData: Omit<
     selectedCommunityId: null, 
     tips: {
       streakCount: 0, 
+      dailyTipId: null,
       lastTipCompletedAt: null, 
       lastTipCompletedId: null, 
       record: {}, 
