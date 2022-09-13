@@ -71,7 +71,7 @@ export type UserTips = {
     boolean, 
     boolean, 
   ]>;
-  dailyTipId: TipId;
+  dailyTipId: OrNull<TipId>;
   lastTipCompletedAt: Timestamp; 
   lastTipCompletedId: OrNull<TipId>;
   record: Record<TipId, {
