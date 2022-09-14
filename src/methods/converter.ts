@@ -1,4 +1,5 @@
 import {Firestore, QueryDocumentSnapshot, PartialWithFieldValue} from '@google-cloud/firestore';
+import { ContentCategory } from '../enum';
 
 import type {
   UserDocumentData,
@@ -7,10 +8,22 @@ import type {
   ConversationDocumentData, 
   MessageSubDocumentData, 
   PostSubDocumentData,
+  GenreDocumentData, 
+
   ConversationId,
   CommunityId,
   PostId,
   MessageId,
+  TipDocumentData,
+  PollDocumentData,
+  DirectlineDocumentData,
+  DialogueSubDocumentData,
+  DialogueId,
+  DirectlineId,
+  ContentData,
+  CommentSubDocumentData,
+  ReplySubDocumentData,
+  CommunityContentId,
 } from '../types';
 
 
@@ -20,6 +33,10 @@ type RootCollections = {
   communities: CommunityDocumentData;
   conversations: ConversationDocumentData;
   roles: RoleDocumentData;
+  genres: GenreDocumentData;
+  tips: TipDocumentData;
+  polls: PollDocumentData;
+  directlines: DirectlineDocumentData;
 }
 
 type SubCollections = {
@@ -27,13 +44,19 @@ type SubCollections = {
     type: MessageSubDocumentData;
     idFlavor: MessageId;
     parent: 'conversations';
-    parentIdFlavor: ConversationId
-  }
-  posts:{
-    type: PostSubDocumentData;
-    idFlavor: PostId;
-    parent: 'communities'
+    parentIdFlavor: ConversationId;
+  };
+  contents:{
+    type: PostSubDocumentData | CommentSubDocumentData | ReplySubDocumentData;
+    idFlavor: CommunityContentId;
+    parent: 'communities';
     parentIdFlavor: CommunityId;
+  };
+  dialogue: {
+    type: DialogueSubDocumentData;
+    idFlavor: DialogueId;
+    parent: 'directlines';
+    parentIdFlavor: DirectlineId;
   }
 }
 
