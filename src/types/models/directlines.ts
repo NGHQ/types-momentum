@@ -14,13 +14,13 @@ export type DirectlineDocumentData = {
   photoUrl: string;
   createdAt: Timestamp;
   updatedAt: Timestamp;
-  recentMessage: OrNull<DialogueDocumentData & {
+  recentMessage: OrNull<DialogueSubDocumentData & {
     path: DocPath<'dialogue'>;
     seenByAdmin: boolean;
   }>;
 }
 
-export type DialogueDocumentData = SubCollectionOf<'directlines', {
+export type DialogueSubDocumentData = SubCollectionOf<'directlines', {
   category: MessageCategory;
   content: string;
   createdAt: Timestamp;
