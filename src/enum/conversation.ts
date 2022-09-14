@@ -1,6 +1,7 @@
 export enum ConversationCategory {
     GROUP = 'GROUP',
-    DIRECT = 'DIRECT'
+    DIRECT = 'DIRECT', 
+    LINE = 'LINE'
 }
 
 export enum MessageCategory {

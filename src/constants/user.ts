@@ -41,8 +41,15 @@ export const defaultUserDocumentData: Omit<
     preferences: {
       notifications: {
         all: false 
+      }, 
+      hints: {
+        showOnboarding: true, 
+        showTipsControl: true
       }
     }, 
+    directline: {
+      lastReadDialogue: null
+    },
     conversations: {}, 
     defaultCommunity: null, 
     selectedCommunityId: null, 

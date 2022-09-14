@@ -63,6 +63,8 @@ export type PostId = CommunityContentId;
 export type CommentId = CommunityContentId;
 export type ReplyId = CommunityContentId;
 
+export type DirectlineId = UserId;
+export type DialogueId = DocumentId<'DialogueId'>;
 export type ConversationId = DocumentId<'ConversationId'>;
 export type MessageId = DocumentId<'MessageId'>;
 

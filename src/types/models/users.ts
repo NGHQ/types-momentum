@@ -33,6 +33,9 @@ export type UserDocumentData = {
   interests: UserInterests;
   helpingHands: Record<string, string>;
   preferences: UserPreferences;
+  directline: {
+    lastReadDialogue: OrNull<DocPath<'dialogue'>>;
+  };
   conversations: Record<ConversationId, {
     lastReadMessage: OrNull<DocPath<'messages'>>;
     pinned: boolean; 
@@ -47,6 +50,10 @@ export type UserPreferences = {
   notifications: {
     all: boolean;
   };
+  hints: {
+    showOnboarding: boolean;
+    showTipsControl: boolean;
+  }
 };
 
 export type UserLinks = {
