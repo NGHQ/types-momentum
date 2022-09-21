@@ -74,6 +74,7 @@ export type GenreDocumentData = {
   thumbnailUrl: string;
   creatorId: UserId;
   createdAt: Timestamp;
+  tipsCount: number;
 } & (
   {
     globallyAvailable: true;

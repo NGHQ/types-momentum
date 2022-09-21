@@ -86,6 +86,7 @@ export type UserTips = {
     completedAt: Timestamp;
     bookmarked: boolean;
     lastShownAsDailyTipAt: Timestamp;
+    lastSeen: Timestamp;
   }>;
 };
 
