@@ -1,4 +1,4 @@
-import type { HttpsCallable, HttpsCallableOptions } from '@firebase/functions-types';
+import type { HttpsCallable, HttpsCallableOptions } from '@firebase/functions';
 import { TipDocumentData } from './models/tips';
 import { CommunityId, TipId } from './utility';
 
