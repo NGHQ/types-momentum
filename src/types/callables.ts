@@ -5,16 +5,19 @@ import { CommunityId, TipId } from './utility';
 export type GetCallable = (name: string, options?: HttpsCallableOptions) => HttpsCallable 
 
 export type CallSuccess<T extends unknown> = {
-  status: 'success';
-  data: T;
+    status: 'success';
+    data: T;
 }
 
 export type CallError = {
-  status: 'error';
-  data: string;
+    status: 'error';
+    data: string;
 };
 
-export type CallableResponse<T extends unknown> = CallSuccess<T> | CallError;
+export type CallableResponse<T extends unknown> = {
+  data: CallSuccess<T> | CallError;
+};
+
 export type Callable<T extends object, R extends unknown> = (params: T) => Promise<CallableResponse<R>>;
 
 export type AllCallables = {
