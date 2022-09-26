@@ -18,10 +18,15 @@ export type CallableResponse<T extends unknown> = CallSuccess<T> | CallError;
 export type Callable<T extends object, R extends unknown> = (params: T) => Promise<CallableResponse<R>>;
 
 export type AllCallables = {
+  'callHealth': CallHealth; 
   'callUpdateGenreTipCount': CallUpdateGenreTipCount;
   'callGetRandomTips': CallGetRandomTips;
 }
 
+export type CallHealth = Callable<
+  {}, 
+  string 
+>;
 export type CallUpdateGenreTipCount = Callable<
   {
     genreId: string;
