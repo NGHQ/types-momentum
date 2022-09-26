@@ -1,7 +1,7 @@
 import { CallError, CallSuccess, AllCallables } from "../types"
 import type { HttpsCallableOptions, httpsCallable as _httpsCallable, Functions} from '@firebase/functions';
 
-export const callRespondWithSuccess = <T extends object>(data: T): CallSuccess<T> => {
+export const callRespondWithSuccess = <T extends unknown>(data: T): CallSuccess<T> => {
   return {
     status: 'success', 
     data
