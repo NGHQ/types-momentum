@@ -15,7 +15,7 @@ export type CallError = {
 };
 
 export type CallableResponse<T extends unknown> = CallSuccess<T> | CallError;
-export type Callable<T extends object, R extends unknown> = (params: T) => CallableResponse<R>;
+export type Callable<T extends object, R extends unknown> = (params: T) => Promise<CallableResponse<R>>;
 
 export type AllCallables = {
   'callUpdateGenreTipCount': CallUpdateGenreTipCount;
