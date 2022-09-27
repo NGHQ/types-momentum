@@ -51,7 +51,6 @@ export const defaultUserDocumentData: Omit<
       lastReadDialogue: null
     },
     conversations: {}, 
-    defaultCommunity: null, 
     selectedCommunityId: null, 
     tips: {
       streakCount: 0, 
@@ -68,5 +67,6 @@ export const defaultUserDocumentData: Omit<
         false, 
         false
       ]
-    }
+    }, 
+    userSurvey: {}
 }
