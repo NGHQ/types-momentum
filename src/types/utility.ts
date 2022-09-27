@@ -69,6 +69,7 @@ export type ConversationId = DocumentId<'ConversationId'>;
 export type MessageId = DocumentId<'MessageId'>;
 
 export type TipId = DocumentId<'TipId'>;
+export type UserSurveyId = DocumentId<'UserSurveyId'>;
 export type PollId = DocumentId<'PollId'>;
 export type GenreId = Flavor<string, 'GenreId'>
 

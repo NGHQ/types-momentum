@@ -16,5 +16,6 @@ export enum TipStoryCategory {
   HTML, 
   VIDEO, 
   POLL, 
-  SVG
+  SVG, 
+  EMT
 }

@@ -13,7 +13,9 @@ import type {
   TipId,
   Timestamp,
   FixedLengthArray,
+  UserSurveyId,
 } from './../utility'
+import { UserSurveyChoice } from './tips';
 
 export type RoleDocumentData = {
   root: Role;
@@ -22,6 +24,7 @@ export type RoleDocumentData = {
     status: UserCommunityStatus
   }>;
 };
+
 
 export type UserDocumentData = {
   username: string;
@@ -41,10 +44,26 @@ export type UserDocumentData = {
     pinned: boolean; 
   }>;
   selectedCommunityId: OrNull<CommunityId>;
-  /**@deprecated use selectedCommunityId */
-  defaultCommunity: OrNull<CommunityId>;
   tips: UserTips;
+  userSurvey: Record<UserSurveyId, {
+    '0': UserSurveyChoice;
+    '25': UserSurveyChoice;
+    '100': UserSurveyChoice;
+    '150': UserSurveyChoice;
+    '200': UserSurveyChoice;
+  }>;
 };
+
+
+/***
+[ , , , , ]
+
+[
+  [ , , , ], 
+  [ , , ], 
+  [ , , , ], 
+]
+*/
 
 export type UserPreferences = {
   notifications: {

@@ -16,7 +16,8 @@ export type TipDocumentData = {
   isDraft: boolean;
   stories: TipStory[];
   genres: Record<GenreId, {
-    title: string
+    title: string;
+    rank: number;
   }>;
   communities: CommunityId[];
   globallyAvailable: boolean;
@@ -46,6 +47,16 @@ export type PollTipStory = {
 export type VectorGraphicTipStory = {
   category: TipStoryCategory.SVG;
   sourceUrl: string;
+}
+
+export type SurveyTipStory = {
+  category: TipStoryCategory.EMT;
+  rank: number;
+  survey: string;
+  genre: {
+    genreId: GenreId;
+    title: string;
+  }
 }
 
 /**
@@ -86,3 +97,6 @@ export type GenreDocumentData = {
     exclusiveToCommunities: CommunityId[];
   }
 );
+
+export type UserSurveyDocument = SurveyTipStory;
+export type UserSurveyChoice = 1 | 2 | 3 | 4 | 5 | 6 | 7;
