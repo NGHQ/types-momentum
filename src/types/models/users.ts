@@ -28,6 +28,8 @@ export type RoleDocumentData = {
 
 export type UserDocumentData = {
   username: string;
+  firstName: string;
+  lastName: string;
   email: string;
   displayName: OrNull<string>;
   bio: OrNull<string>;
@@ -53,17 +55,6 @@ export type UserDocumentData = {
     '200': UserSurveyChoice;
   }>;
 };
-
-
-/***
-[ , , , , ]
-
-[
-  [ , , , ], 
-  [ , , ], 
-  [ , , , ], 
-]
-*/
 
 export type UserPreferences = {
   notifications: {
