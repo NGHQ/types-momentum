@@ -24,6 +24,7 @@ export type AllCallables = {
   'callHealth': CallHealth; 
   'callUpdateGenreTipCount': CallUpdateGenreTipCount;
   'callGetRandomTips': CallGetRandomTips;
+  'callCheckEmailInCulled': CallCheckEmailInCulled;
 }
 
 export type CallHealth = Callable<
