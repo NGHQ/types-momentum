@@ -25,7 +25,9 @@ export const defaultUserInterests = {
 export const defaultUserDocumentData: Omit<
   UserDocumentData, 
   'username' | 
-  'email'
+  'email' | 
+  'firstName' | 
+  'lastName'
 > = {
     bio: null, 
     displayName: null, 
