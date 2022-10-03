@@ -23,6 +23,7 @@ export type TipDocumentData = {
   globallyAvailable: boolean;
   createdAt: Timestamp;
   responseCount: number;
+  thumbnailUrl: string;
 }; 
 
 export type TipStory = HyperTextTipStory | VideoTipStory | PollTipStory | VectorGraphicTipStory;
