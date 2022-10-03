@@ -15,4 +15,5 @@ export type WaitListDocumentData = {
   firstName: string;
   lastName: string;
   approved: WaitListApproval;
+  userDocId: OrNull<UserId>;
 }
