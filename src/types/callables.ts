@@ -53,7 +53,7 @@ export type EmailInCulledResponse = {
 } | {
   created: boolean;
   inCulled: false;
-  waitListStatus: 'alreadyAdded' | 'added'
+  waitListStatus: 'alreadyAdded' | 'added' | 'notAdded'
 }
 
 export type CallCheckEmailInCulled = Callable<
