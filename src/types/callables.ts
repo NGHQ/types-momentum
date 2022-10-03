@@ -44,3 +44,20 @@ export type CallGetRandomTips = Callable<
   }, 
   TipDocumentData[]
 >;
+
+export type EmailInCulledResponse = {
+  created: boolean;
+  inCulled: true;
+  waitListStatus: 'na'
+} | {
+  created: boolean;
+  inCulled: false;
+  waitListStatus: 'alreadyAdded' | 'added'
+}
+
+export type CallCheckEmailInCulled = Callable<
+  {
+    email: string;
+  },
+  EmailInCulledResponse
+>;
