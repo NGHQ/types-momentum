@@ -57,6 +57,7 @@ export type SurveyTipStory = {
   genre: {
     genreId: GenreId;
     title: string;
+    colorHex: string;
   }
 }
 
@@ -87,6 +88,7 @@ export type GenreDocumentData = {
   creatorId: UserId;
   createdAt: Timestamp;
   tipsCount: number;
+  colorHex: string;
 } & (
   {
     globallyAvailable: true;
