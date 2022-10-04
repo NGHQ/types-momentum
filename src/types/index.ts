@@ -1,3 +1,4 @@
+export * from './models/meta';
 export * from './models/communities';
 export * from './models/conversations';
 export * from './models/directlines';
