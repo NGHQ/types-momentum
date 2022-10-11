@@ -72,4 +72,4 @@ export type TipId = DocumentId<'TipId'>;
 export type UserSurveyId = DocumentId<'UserSurveyId'>;
 export type PollId = DocumentId<'PollId'>;
 export type GenreId = Flavor<string, 'GenreId'>
-
+export type TagId = DocumentId<'TagId'>

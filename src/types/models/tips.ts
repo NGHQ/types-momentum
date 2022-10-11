@@ -9,7 +9,13 @@ import {
   TipId,
   CommunityId,
   Timestamp,
+  TagId,
  } from '../utility';
+
+export type TipTag = {
+  tagId: TagId;
+  title: string;
+} 
 
 export type TipDocumentData = {
   title: string;
@@ -19,6 +25,7 @@ export type TipDocumentData = {
     title: string;
     rank: number;
   }>;
+  tags: TipTag[];
   communities: CommunityId[];
   globallyAvailable: boolean;
   createdAt: Timestamp;
@@ -100,6 +107,12 @@ export type GenreDocumentData = {
     exclusiveToCommunities: CommunityId[];
   }
 );
+
+export type TagDocumentData = {
+  title: string;
+  creatorId: UserId;
+  createdAt: Timestamp;
+}
 
 export type UserSurveyDocument = SurveyTipStory;
 export type UserSurveyChoice = 1 | 2 | 3 | 4 | 5 | 6 | 7;
