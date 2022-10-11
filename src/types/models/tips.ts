@@ -12,6 +12,11 @@ import {
   TagId,
  } from '../utility';
 
+export type TipTag = {
+  tagId: TagId;
+  title: string;
+} 
+
 export type TipDocumentData = {
   title: string;
   isDraft: boolean;
@@ -20,7 +25,7 @@ export type TipDocumentData = {
     title: string;
     rank: number;
   }>;
-  tags: TagId[];
+  tags: TipTag[];
   communities: CommunityId[];
   globallyAvailable: boolean;
   createdAt: Timestamp;
