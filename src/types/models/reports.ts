@@ -5,6 +5,7 @@ export type ReportDocumentData = {
   reportee: UserId;
   description: string;
   createdAt: Timestamp;
+  resolved: boolean;
 } & ({
   tag: 'content';
   reportedContent: CommunityContentId;
