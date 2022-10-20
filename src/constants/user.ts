@@ -47,7 +47,8 @@ export const defaultUserDocumentData: Omit<
       hints: {
         showOnboarding: true, 
         showTipsControl: true
-      }
+      },
+      blockedUsers: [] 
     }, 
     directline: {
       lastReadDialogue: null

@@ -14,6 +14,7 @@ import type {
   Timestamp,
   FixedLengthArray,
   UserSurveyId,
+  UserId,
 } from './../utility'
 import { UserSurveyChoice } from './tips';
 
@@ -63,7 +64,8 @@ export type UserPreferences = {
   hints: {
     showOnboarding: boolean;
     showTipsControl: boolean;
-  }
+  };
+  blockedUsers: UserId[];
 };
 
 export type UserLinks = {
