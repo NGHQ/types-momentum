@@ -13,6 +13,7 @@ import type {
 import type {
   Reactions
 } from './communities';
+import { UserPreview } from './users';
 
 export type ConversationDocumentData = {
   category: ConversationCategory;
@@ -21,7 +22,9 @@ export type ConversationDocumentData = {
   displayName: OrNull<string>;
   createdAt: Timestamp;
   updatedAt: Timestamp;
-  roles: Record<UserId, ConversationParticipantRole>;
+  roles: Record<UserId, {
+    role: ConversationParticipantRole
+  } & UserPreview>;
   recentMessage: OrNull<MessageSubDocumentData & {
     path: DocPath<'messages'>;
   }>;

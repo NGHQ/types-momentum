@@ -32,7 +32,7 @@ export type UserDocumentData = {
   firstName: string;
   lastName: string;
   email: string;
-  displayName: OrNull<string>;
+  displayName: string;
   bio: OrNull<string>;
   photoUrl: OrNull<string>;
   links: UserLinks;
@@ -102,10 +102,24 @@ export type UserTips = {
   }>;
 };
 
+export type UserPreview = Pick<
+  UserDocumentData, 
+  'photoUrl' | 
+  'displayName' | 
+  'firstName' |
+  'lastName'
+> & {id: UserDocumentData}
+
+
 /** @description Psuedo Document Model type. Reflects read access rules when requester.id !== userId */
 export type PeerDocumentData = Pick<
   UserDocumentData,
-  'preferences' |
-  'conversations' | 
-  'directline'  
+  'role' |
+  'username' | 
+  'firstName' | 
+  'lastName' | 
+  'email' | 
+  'displayName' | 
+  'bio' | 
+  'photoUrl' 
 >;

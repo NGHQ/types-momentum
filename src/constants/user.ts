@@ -28,10 +28,10 @@ export const defaultUserDocumentData: Omit<
   'email' | 
   'firstName' | 
   'lastName' | 
+  'displayName' | 
   'role'
 > = {
     bio: null, 
-    displayName: null, 
     photoUrl: null,
     links: {
       instagram: null, 
