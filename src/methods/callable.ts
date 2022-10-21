@@ -28,7 +28,7 @@ export const typedCallable = <F extends keyof AllCallables>(
 
 export const parseCallableResult = <
   T extends keyof AllCallables,
-  R extends Awaited<ReturnType<AllCallables[T]>>
+  R extends Awaited<ReturnType<AllCallables[T]>>['data']
 >(result: R): R => {
   const r = result as unknown as string;
   const res: R = JSON.parse(r);

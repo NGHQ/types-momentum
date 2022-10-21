@@ -24,6 +24,7 @@ export type AllCallables = {
   'callHealth': CallHealth; 
   'callUpdateGenreTipCount': CallUpdateGenreTipCount;
   'callGetRandomTips': CallGetRandomTips;
+  'callCheckEmailInCulled': CallCheckEmailInCulled;
 }
 
 export type CallHealth = Callable<
@@ -43,4 +44,21 @@ export type CallGetRandomTips = Callable<
     community: CommunityId;
   }, 
   TipDocumentData[]
+>;
+
+export type EmailInCulledResponse = {
+  created: boolean;
+  inCulled: true;
+  waitListStatus: 'na'
+} | {
+  created: boolean;
+  inCulled: false;
+  waitListStatus: 'alreadyAdded' | 'added' | 'notAdded'
+}
+
+export type CallCheckEmailInCulled = Callable<
+  {
+    email: string;
+  },
+  EmailInCulledResponse
 >;

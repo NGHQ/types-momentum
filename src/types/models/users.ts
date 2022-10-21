@@ -14,6 +14,7 @@ import type {
   Timestamp,
   FixedLengthArray,
   UserSurveyId,
+  UserId,
 } from './../utility'
 import { UserSurveyChoice } from './tips';
 
@@ -28,6 +29,8 @@ export type RoleDocumentData = {
 
 export type UserDocumentData = {
   username: string;
+  firstName: string;
+  lastName: string;
   email: string;
   displayName: OrNull<string>;
   bio: OrNull<string>;
@@ -54,17 +57,6 @@ export type UserDocumentData = {
   }>;
 };
 
-
-/***
-[ , , , , ]
-
-[
-  [ , , , ], 
-  [ , , ], 
-  [ , , , ], 
-]
-*/
-
 export type UserPreferences = {
   notifications: {
     all: boolean;
@@ -72,7 +64,8 @@ export type UserPreferences = {
   hints: {
     showOnboarding: boolean;
     showTipsControl: boolean;
-  }
+  };
+  blockedUsers: UserId[];
 };
 
 export type UserLinks = {
