@@ -27,7 +27,8 @@ export const defaultUserDocumentData: Omit<
   'username' | 
   'email' | 
   'firstName' | 
-  'lastName'
+  'lastName' | 
+  'role'
 > = {
     bio: null, 
     displayName: null, 

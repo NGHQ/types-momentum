@@ -18,7 +18,7 @@ import type {
 } from './../utility'
 import { UserSurveyChoice } from './tips';
 
-export type RoleDocumentData = {
+export type UserRole = {
   root: Role;
   communities: Record<CommunityId, {
     role: CommunityRole, 
@@ -26,8 +26,8 @@ export type RoleDocumentData = {
   }>;
 };
 
-
 export type UserDocumentData = {
+  role: UserRole;
   username: string;
   firstName: string;
   lastName: string;
@@ -103,4 +103,9 @@ export type UserTips = {
 };
 
 /** @description Psuedo Document Model type. Reflects read access rules when requester.id !== userId */
-export type PeerDocumentData = Omit<UserDocumentData, 'preferences' | 'conversations'>;
+export type PeerDocumentData = Pick<
+  UserDocumentData,
+  'preferences' |
+  'conversations' | 
+  'directline'  
+>;
