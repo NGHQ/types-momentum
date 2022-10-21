@@ -9,7 +9,8 @@ import {
   UnNullableTimestamp,
   UserId, 
   StoreSchema, 
-  EntityWithId
+  EntityWithId,
+  UserPreview
 } from "../types";
 
 /* ------ Generic Redux-Firebase Utilities ------ */
@@ -59,7 +60,7 @@ export type ContentCommonPayload<T extends ContentCategory> = {
     taggedUserIds?: UserId[];
     links?: string[];
   }, 
-  creatorId: UserId;
+  creator: UserPreview;
   createdAt: UnNullableTimestamp;
   content: OrNull<string>;
   communityId: CommunityId;
@@ -75,7 +76,7 @@ export type ContentCommonPayload<T extends ContentCategory> = {
 
 
 export const generateNewContent = <T extends ContentCategory>(category: T, payload: ContentCommonPayload<T>): ContentData<T> => {
-  const {creatorId, content, communityId, createdAt, responseOfId} = payload;
+  const {creator, content, communityId, createdAt, responseOfId} = payload;
   const defaultMetadata: ContentMetadata = {
     imageUrls: [], 
     videoUrl: null, 
@@ -99,7 +100,7 @@ export const generateNewContent = <T extends ContentCategory>(category: T, paylo
   const res: ContentData<T> = {
     category,
     createdAt, 
-    creatorId, 
+    creator,
     content,
     parentPath, 
     metadata,
