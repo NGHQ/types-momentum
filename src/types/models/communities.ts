@@ -11,6 +11,7 @@ import type {
   PostId,
   CommentId, 
 } from '../utility'
+import { UserPreview } from './users';
 
 
 export type CommunityDocumentData = {
@@ -34,7 +35,7 @@ export type Reactions = {
 export type ContentData<T extends ContentCategory> = SubCollectionOf<'communities', {
   category: T;
   metadata: ContentMetadata;
-  creatorId: UserId;
+  creator: UserPreview;
   createdAt: Timestamp;
   content: OrNull<string>;
   reactions: Reactions;
