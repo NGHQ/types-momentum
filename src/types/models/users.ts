@@ -108,7 +108,7 @@ export type UserPreview = Pick<
   'displayName' | 
   'firstName' |
   'lastName'
-> & {id: UserDocumentData}
+> & {id: UserId}
 
 
 /** @description Psuedo Document Model type. Reflects read access rules when requester.id !== userId */
