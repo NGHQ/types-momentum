@@ -7,9 +7,11 @@ export type CulledDocumentData = {
   communityRole: CommunityRole;
   firstName: string;
   lastName: string;
+  /**@deprecated */
   userDocId: OrNull<UserId>;
 }
 
+  /**@deprecated */
 export type WaitListDocumentData = {
   email: string;
   firstName: string;
