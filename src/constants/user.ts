@@ -27,10 +27,12 @@ export const defaultUserDocumentData: Omit<
   'username' | 
   'email' | 
   'firstName' | 
-  'lastName'
+  'lastName' | 
+  'displayName' | 
+  'role' | 
+  'selectedCommunityId'
 > = {
     bio: null, 
-    displayName: null, 
     photoUrl: null,
     links: {
       instagram: null, 
@@ -54,7 +56,6 @@ export const defaultUserDocumentData: Omit<
       lastReadDialogue: null
     },
     conversations: {}, 
-    selectedCommunityId: null, 
     tips: {
       streakCount: 0, 
       dailyTipId: null,

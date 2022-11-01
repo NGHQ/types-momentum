@@ -1,18 +1,14 @@
-import {Firestore, QueryDocumentSnapshot, PartialWithFieldValue} from '@google-cloud/firestore';
-import { ContentCategory } from '../enum';
+import { Firestore, QueryDocumentSnapshot, PartialWithFieldValue } from '@google-cloud/firestore';
 
 import type {
   UserDocumentData,
-  RoleDocumentData, 
   CommunityDocumentData, 
   ConversationDocumentData, 
   MessageSubDocumentData, 
   PostSubDocumentData,
   GenreDocumentData, 
-
   ConversationId,
   CommunityId,
-  PostId,
   MessageId,
   TipDocumentData,
   PollDocumentData,
@@ -26,13 +22,10 @@ import type {
   CommunityContentId,
 } from '../types';
 
-
-
 type RootCollections = {
   users: UserDocumentData;
   communities: CommunityDocumentData;
   conversations: ConversationDocumentData;
-  roles: RoleDocumentData;
   genres: GenreDocumentData;
   tips: TipDocumentData;
   polls: PollDocumentData;
