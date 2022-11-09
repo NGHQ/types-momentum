@@ -104,10 +104,20 @@ export type UserTips = {
 
 export type UserPreview = Pick<
   UserDocumentData, 
-  'photoUrl' | 
   'displayName' | 
   'firstName' |
   'lastName' | 
+  'photoUrl'  
+> & {id: UserId}
+
+
+/** @description Psuedo Document Model type. Reflects read access rules when requester.id !== userId */
+export type PeerDocumentData = Pick<
+  UserDocumentData,
+  'displayName' | 
+  'firstName' |
+  'lastName' | 
+  'photoUrl' | 
   'email' | 
   'links' | 
   'interests' | 
@@ -115,17 +125,3 @@ export type UserPreview = Pick<
   'bio' | 
   'role'
 > & {id: UserId}
-
-
-/** @description Psuedo Document Model type. Reflects read access rules when requester.id !== userId */
-export type PeerDocumentData = Pick<
-  UserDocumentData,
-  'role' |
-  'username' | 
-  'firstName' | 
-  'lastName' | 
-  'email' | 
-  'displayName' | 
-  'bio' | 
-  'photoUrl' 
->;
