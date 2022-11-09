@@ -1,6 +1,7 @@
 import type { HttpsCallable, HttpsCallableOptions } from '@firebase/functions';
 import { TipDocumentData } from './models/tips';
-import { CommunityId, TipId } from './utility';
+import { PeerDocumentData, UserPreview } from './models/users';
+import { CommunityId, TipId, UserId } from './utility';
 
 export type GetCallable = (name: string, options?: HttpsCallableOptions) => HttpsCallable 
 
@@ -61,4 +62,20 @@ export type CallCheckEmailInCulled = Callable<
     email: string;
   },
   EmailInCulledResponse
+>;
+
+export type CallGetCommunityMemberPreviews = Callable<
+  {
+    startAfter: number;
+    limit: number;
+    communityId: CommunityId;
+  }, 
+  UserPreview[]
+>;
+
+export type CallGetPeerDocument = Callable<
+  {
+    userId: UserId;
+  },
+  PeerDocumentData
 >;

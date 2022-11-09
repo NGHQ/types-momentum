@@ -107,7 +107,13 @@ export type UserPreview = Pick<
   'photoUrl' | 
   'displayName' | 
   'firstName' |
-  'lastName'
+  'lastName' | 
+  'email' | 
+  'links' | 
+  'interests' | 
+  'helpingHands' | 
+  'bio' | 
+  'role'
 > & {id: UserId}
 
 
