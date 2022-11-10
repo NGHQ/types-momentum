@@ -27,7 +27,7 @@ export type AllCallables = {
   'callGetRandomTips': CallGetRandomTips;
   'callCheckEmailInCulled': CallCheckEmailInCulled;
   'callGetCommunityMemberPreviews': CallGetCommunityMemberPreviews;
-  'CallGetPeerDocument': CallGetPeerDocument;
+  'callGetPeerDocument': CallGetPeerDocument;
 }
 
 export type CallHealth = Callable<
