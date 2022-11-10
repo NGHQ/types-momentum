@@ -25,13 +25,13 @@
   "homepage": "https://github.com/NGHQ/types-momentum#readme",
   "optionalDependencies": {
     "@firebase/firestore": "^3.4.14",
-    "@google-cloud/firestore": "^5.0.0",
-    "@firebase/functions": "^0.8.4"
+    "@firebase/functions": "^0.8.4",
+    "@google-cloud/firestore": "^6.4.1"
   },
   "devDependencies": {
     "@firebase/firestore": "^3.4.14",
-    "@google-cloud/firestore": "^5.0.0",
-    "@firebase/functions": "^0.8.4"
+    "@firebase/functions": "^0.8.4",
+    "@google-cloud/firestore": "^6.4.1"
   },
   "dependencies": {
     "dayjs": "^1.11.5"

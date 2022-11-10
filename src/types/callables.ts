@@ -68,8 +68,8 @@ export type CallCheckEmailInCulled = Callable<
 
 export type CallGetCommunityMemberPreviews = Callable<
   {
-    startAfter: number;
-    limit: number;
+    startAfter?: UserId;
+    limit?: number;
     communityId: CommunityId;
   }, 
   UserPreview[]
