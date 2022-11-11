@@ -1,14 +1,14 @@
 import {
-  Role, 
-  CommunityRole, 
+  Role,
+  CommunityRole,
   UserCommunityStatus,
   UserInterest,
 } from '../../enum';
 
 import type {
-  OrNull, 
-  CommunityId, 
-  ConversationId, 
+  OrNull,
+  CommunityId,
+  ConversationId,
   DocPath,
   TipId,
   Timestamp,
@@ -21,7 +21,7 @@ import { UserSurveyChoice } from './tips';
 export type UserRole = {
   root: Role;
   communities: Record<CommunityId, {
-    role: CommunityRole, 
+    role: CommunityRole,
     status: UserCommunityStatus
   }>;
 };
@@ -44,9 +44,12 @@ export type UserDocumentData = {
   };
   conversations: Record<ConversationId, {
     lastReadMessage: OrNull<DocPath<'messages'>>;
-    pinned: boolean; 
+    pinned: boolean;
   }>;
   selectedCommunityId: OrNull<CommunityId>;
+  /** 
+   * @deprecated Use Record Document Data instead.
+   * */
   tips: UserTips;
   userSurvey: Record<UserSurveyId, {
     '0': UserSurveyChoice;
@@ -82,16 +85,16 @@ export type UserInterests = {
 export type UserTips = {
   streakCount: number;
   runningStreak: FixedLengthArray<[
-    boolean, 
-    boolean, 
-    boolean, 
-    boolean, 
-    boolean, 
-    boolean, 
-    boolean, 
+    boolean,
+    boolean,
+    boolean,
+    boolean,
+    boolean,
+    boolean,
+    boolean,
   ]>;
   dailyTipId: OrNull<TipId>;
-  lastTipCompletedAt: Timestamp; 
+  lastTipCompletedAt: Timestamp;
   lastTipCompletedId: OrNull<TipId>;
   record: Record<TipId, {
     completed: boolean;
@@ -103,25 +106,25 @@ export type UserTips = {
 };
 
 export type UserPreview = Pick<
-  UserDocumentData, 
-  'displayName' | 
+  UserDocumentData,
+  'displayName' |
   'firstName' |
-  'lastName' | 
-  'photoUrl'  
-> & {id: UserId}
+  'lastName' |
+  'photoUrl'
+> & { id: UserId }
 
 
 /** @description Psuedo Document Model type. Reflects read access rules when requester.id !== userId */
 export type PeerDocumentData = Pick<
   UserDocumentData,
-  'displayName' | 
+  'displayName' |
   'firstName' |
-  'lastName' | 
-  'photoUrl' | 
-  'email' | 
-  'links' | 
-  'interests' | 
-  'helpingHands' | 
-  'bio' | 
+  'lastName' |
+  'photoUrl' |
+  'email' |
+  'links' |
+  'interests' |
+  'helpingHands' |
+  'bio' |
   'role'
-> & {id: UserId}
+> & { id: UserId }
