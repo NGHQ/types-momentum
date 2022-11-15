@@ -57,6 +57,7 @@ export const defaultUserDocumentData: Omit<
       lastReadDialogue: null
     },
     conversations: {}, 
+    /** @deprecated kept for backwards compat with app v2.1 */
     tips: {
       streakCount: 0, 
       dailyTipId: null,
