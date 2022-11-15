@@ -58,6 +58,7 @@ export type UserDocumentData = {
     '150': UserSurveyChoice;
     '200': UserSurveyChoice;
   }>;
+  createdAt: Timestamp;
 };
 
 export type UserPreferences = {
