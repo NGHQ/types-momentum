@@ -30,7 +30,8 @@ export const defaultUserDocumentData: Omit<
   'lastName' | 
   'displayName' | 
   'role' | 
-  'selectedCommunityId'
+  'selectedCommunityId' |
+  'createdAt'
 > = {
     bio: null, 
     photoUrl: null,
