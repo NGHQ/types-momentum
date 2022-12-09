@@ -3,9 +3,6 @@
     "rootDir": "src",
     "outDir": "./lib",
     "target": "ESNext",
-    "types": [
-      "node",
-    ],
     "allowJs": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,

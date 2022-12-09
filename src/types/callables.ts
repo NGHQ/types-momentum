@@ -1,9 +1,7 @@
-import type { HttpsCallable, HttpsCallableOptions } from '@firebase/functions';
 import { TipDocumentData } from './models/tips';
 import { PeerDocumentData, UserPreview } from './models/users';
 import { CommunityId, TipId, UserId } from './utility';
 
-export type GetCallable = (name: string, options?: HttpsCallableOptions) => HttpsCallable 
 
 export type CallSuccess<T extends unknown> = {
     status: 'success';
