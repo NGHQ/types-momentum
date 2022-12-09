@@ -1,4 +1,4 @@
-import type { Timestamp as UnNullableTimestamp } from '@firebase/firestore';
+import type { FirestoreTimestamp as UnNullableTimestamp } from './timestamp';
 
 import {
   CollectionRootPaths, 
@@ -6,6 +6,8 @@ import {
 } from '../enum';
 
 type ImmutablePrimitive = undefined | null | boolean | string | number | Function;
+
+
 
 export type Immutable<T> =
     T extends ImmutablePrimitive ? T :

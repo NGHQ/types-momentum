@@ -3,10 +3,13 @@ import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
 
 import type { UnNullableTimestamp, TZCode, Timestamp as NullableTimestamp, UserTips } from "../types";
-import { Timestamp } from '@firebase/firestore';
+import { FirestoreTimestamp } from '../types/timestamp';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
+
+
+// TODO Refactor Streak methods
 
 /**
  * @description Allows passing IANA Timezone code not listed in TZCode union. Should be used only for dynamically generated codes. 
@@ -40,7 +43,7 @@ export const streakStateAfterCompletion = (
   runningStreak: UserTips['runningStreak'],
   timezone: TZCode 
 ): StreakStateAfterCompletionResult  => {
-  const newLastTipCompletedAt = Timestamp.now();
+  const newLastTipCompletedAt = FirestoreTimestamp.now();
   const daysDiff = daysDiffFromNow(newLastTipCompletedAt, lastTipCompletedAt, timezone);
   const newRunningStreak = getRunningStreak(runningStreak, daysDiff, true);
   const res = (

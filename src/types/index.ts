@@ -6,9 +6,11 @@ export * from './models/tips';
 export * from './models/users';
 export * from './models/culled';
 export * from './models/reports';
-
 export * from './callables';
 
 export * from './store';
-export * from './utility';
 export * from './iana';
+export * from './utility';
+
+/** Copied to eleminate firebase/firestore package depedency */
+export * from './timestamp';
