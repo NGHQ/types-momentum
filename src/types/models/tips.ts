@@ -96,6 +96,7 @@ export type GenreDocumentData = {
   createdAt: Timestamp;
   tipsCount: number;
   colorHex: string;
+  rank: number;
 } & (
   {
     globallyAvailable: true;
