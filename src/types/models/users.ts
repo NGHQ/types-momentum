@@ -83,16 +83,21 @@ export type UserInterests = {
   [key in UserInterest]: boolean;
 };
 
+export type DayStreak = {
+  didWatch: boolean; 
+  isoTime: string;
+}
+
 export type UserTips = {
   streakCount: number;
   runningStreak: FixedLengthArray<[
-    boolean,
-    boolean,
-    boolean,
-    boolean,
-    boolean,
-    boolean,
-    boolean,
+    DayStreak,
+    DayStreak,
+    DayStreak,
+    DayStreak,
+    DayStreak,
+    DayStreak,
+    DayStreak,
   ]>;
   dailyTipId: OrNull<TipId>;
   lastTipCompletedAt: Timestamp;

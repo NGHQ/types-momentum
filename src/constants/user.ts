@@ -22,6 +22,17 @@ export const defaultUserInterests = {
   [UserInterest.TECH]: false,
 };
 
+
+export const DaysOfWeek = {
+  0: 'Sunday', 
+  1: 'Monday', 
+  2: 'Tuesday', 
+  3: 'Wednesday', 
+  4: 'Thursday', 
+  5: 'Friday', 
+  6: 'Saturday'
+} as const;
+
 export const defaultUserDocumentData: Omit<
   UserDocumentData, 
   'username' | 
@@ -65,13 +76,13 @@ export const defaultUserDocumentData: Omit<
       lastTipCompletedId: null, 
       record: {}, 
       runningStreak: [
-        false, 
-        false, 
-        false, 
-        false, 
-        false, 
-        false, 
-        false
+        { didWatch: false, isoTime: '1970-01-01T00:00:00.000Z' },
+        { didWatch: false, isoTime: '1970-01-01T00:00:00.000Z' },
+        { didWatch: false, isoTime: '1970-01-01T00:00:00.000Z' },
+        { didWatch: false, isoTime: '1970-01-01T00:00:00.000Z' },
+        { didWatch: false, isoTime: '1970-01-01T00:00:00.000Z' },
+        { didWatch: false, isoTime: '1970-01-01T00:00:00.000Z' },
+        { didWatch: false, isoTime: '1970-01-01T00:00:00.000Z' },
       ]
     }, 
     userSurvey: {}
