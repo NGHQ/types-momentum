@@ -97,6 +97,7 @@ export type GenreDocumentData = {
   tipsCount: number;
   colorHex: string;
   rank: number;
+  isDraft: boolean;
 } & (
   {
     globallyAvailable: true;
