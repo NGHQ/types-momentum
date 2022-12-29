@@ -19,6 +19,7 @@ export type CommunityDocumentData = {
   bio: string;
   photoUrl: string;
   extendsGlobalFeed: boolean;
+  extension: string[];
 };
 
 export type ContentMetadata = {
