@@ -3,13 +3,13 @@ import {
   ContentReactionCode,
 } from '../../enum';
 import type {
-  OrNull, 
-  CommunityId, 
+  OrNull,
+  CommunityId,
   SubCollectionOf,
   Timestamp,
   UserId,
   PostId,
-  CommentId, 
+  CommentId,
 } from '../utility'
 import { UserPreview } from './users';
 
@@ -19,7 +19,7 @@ export type CommunityDocumentData = {
   bio: string;
   photoUrl: string;
   extendsGlobalFeed: boolean;
-  extension: string[];
+  acceptedDomains: string[];
 };
 
 export type ContentMetadata = {
@@ -40,13 +40,13 @@ export type ContentData<T extends ContentCategory> = SubCollectionOf<'communitie
   createdAt: Timestamp;
   content: OrNull<string>;
   reactions: Reactions;
-  responseOfId: T extends ContentCategory.POST ? 
-    CommunityId : 
-    T extends ContentCategory.COMMENT ? 
-      PostId : 
-      T extends ContentCategory.REPLY ? 
-        CommentId : 
-        never
+  responseOfId: T extends ContentCategory.POST ?
+  CommunityId :
+  T extends ContentCategory.COMMENT ?
+  PostId :
+  T extends ContentCategory.REPLY ?
+  CommentId :
+  never
 }>;
 
 export type PostSubDocumentData = ContentData<ContentCategory.POST>;
