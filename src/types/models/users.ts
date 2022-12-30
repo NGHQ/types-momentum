@@ -63,6 +63,7 @@ export type UserDocumentData = {
 
 export type UserPreferences = {
   notifications: {
+    playerId?: string;
     all: boolean;
   };
   hints: {
