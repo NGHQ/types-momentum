@@ -17,4 +17,4 @@ export type PushNotificationMessage = {
    contents: { en: string };
    include_player_ids: string[];
    url?: string;
-}
+};
