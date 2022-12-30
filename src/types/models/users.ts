@@ -119,6 +119,9 @@ export type UserPreview = Pick<
   'photoUrl'
 > & { id: UserId }
 
+export type NotificationUserPreview = Pick<UserDocumentData, 'photoUrl' | 'displayName'>
+
+
 
 /** @description Psuedo Document Model type. Reflects read access rules when requester.id !== userId */
 export type PeerDocumentData = Pick<
