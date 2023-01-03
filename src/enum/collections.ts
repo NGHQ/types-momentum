@@ -14,6 +14,6 @@ export const FirstDescendantPaths = {
   messages: 'conversations', 
   dialogue: 'directlines',
   contents: 'communities', 
-  inappMessages: 'notifications'
+  userNotifications: 'notifications'
 } as const;
 
