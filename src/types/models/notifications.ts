@@ -6,7 +6,8 @@ export type NotificationDocumentData = Record<string, never>;
 
 export type UserNotificationDocumentData = SubCollectionOf<'notifications', {
    category: NotificationCategory;
-   message: string;
+   content: string;
+   contentId: string;
    createdAt: Timestamp;
    hasRead: boolean;
    creator: UserPreview;
