@@ -21,4 +21,5 @@ export type PushNotificationMessage = {
    delayed_option?: string;
    delivery_time_of_day?: string;
    throttle_rate_per_minute?: number;
+   url: string;
 };
