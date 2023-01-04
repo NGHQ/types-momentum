@@ -68,6 +68,11 @@ export type SurveyTipStory = {
   }
 }
 
+export type ImageTipStory = {
+  category: TipStoryCategory.IMAGE;
+  sourceUrl: string;
+}
+
 /**
  * @description Psuedo ID: ChoiceId is not a document ID
  */
