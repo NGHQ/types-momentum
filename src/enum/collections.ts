@@ -6,12 +6,14 @@ export const CollectionRootPaths = {
   genres: 'root',
   tips: 'root', 
   polls: 'root', 
-  directlines: 'root' 
+  directlines: 'root',
+  notifications: 'root' 
 } as const;
 
 export const FirstDescendantPaths = {
   messages: 'conversations', 
   dialogue: 'directlines',
   contents: 'communities', 
+  userNotifications: 'notifications'
 } as const;
 

@@ -18,11 +18,16 @@ import type {
   ReplySubDocumentData,
   CommunityContentId,
   UserTipsDocumentData,
+  NotificationDocumentData,
+  NotificationId,
+  UserNotificationDocumentData,
+  UserId,
 } from "../types";
 
 // TODO Needs updating with current models
 export type RootCollections = {
   users: UserDocumentData;
+  notifications: NotificationDocumentData;
   communities: CommunityDocumentData;
   conversations: ConversationDocumentData;
   genres: GenreDocumentData;
@@ -51,4 +56,10 @@ export type SubCollections = {
     parent: "directlines";
     parentIdFlavor: DirectlineId;
   };
+  notification: {
+    type: UserNotificationDocumentData;
+    idFlavor: NotificationId;
+    parent: "notifications";
+    parentIdFlavour: UserId;
+  }
 };

@@ -63,6 +63,7 @@ export type UserDocumentData = {
 
 export type UserPreferences = {
   notifications: {
+    playerId?: string;
     all: boolean;
   };
   hints: {
@@ -118,6 +119,7 @@ export type UserPreview = Pick<
   'lastName' |
   'photoUrl'
 > & { id: UserId }
+
 
 
 /** @description Psuedo Document Model type. Reflects read access rules when requester.id !== userId */

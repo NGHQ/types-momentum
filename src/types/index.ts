@@ -7,6 +7,7 @@ export * from './models/users';
 export * from './models/culled';
 export * from './models/reports';
 export * from './callables';
+export * from './models/notifications';
 
 export * from './store';
 export * from './iana';
