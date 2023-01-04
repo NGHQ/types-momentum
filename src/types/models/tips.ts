@@ -33,7 +33,7 @@ export type TipDocumentData = {
   thumbnailUrl: string;
 }; 
 
-export type TipStory = HyperTextTipStory | VideoTipStory | PollTipStory | VectorGraphicTipStory;
+export type TipStory = HyperTextTipStory | VideoTipStory | PollTipStory | VectorGraphicTipStory | ImageTipStory;
 
 export type HyperTextTipStory = {
   category: TipStoryCategory.HTML;
