@@ -10,7 +10,7 @@ export type UserNotificationDocumentData = SubCollectionOf<'notifications', {
    contentId: string;
    createdAt: Timestamp;
    hasRead: boolean;
-   creator: UserPreview;
+   creator: Pick<UserPreview, 'displayName' | 'photoUrl'>;
 }>;
 
 export type PushNotificationMessage = {
