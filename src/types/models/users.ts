@@ -120,7 +120,7 @@ export type UserPreview = Pick<
   'photoUrl'
 > & { id: UserId }
 
-export type UserPreviewDisplayPhoto = Pick<UserDocumentData, 'displayName' | 'photoUrl'>
+export type UserPreviewDisplayPhoto = Pick<UserPreview, 'displayName' | 'photoUrl'>
 
 
 
