@@ -1,6 +1,6 @@
 import { NotificationCategory } from '../../enum';
 import { SubCollectionOf, Timestamp } from '../utility';
-import { UserPreview } from './users';
+import { UserPreviewDisplayPhoto } from './users';
 
 export type NotificationDocumentData = Record<string, never>;
 
@@ -10,7 +10,7 @@ export type UserNotificationDocumentData = SubCollectionOf<'notifications', {
    contentId: string;
    createdAt: Timestamp;
    hasRead: boolean;
-   creator: UserPreview;
+   creator: UserPreviewDisplayPhoto;
 }>;
 
 export type PushNotificationMessage = {
