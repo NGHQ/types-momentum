@@ -120,8 +120,6 @@ export type UserPreview = Pick<
   'photoUrl'
 > & { id: UserId }
 
-export type UserPreviewDisplayPhoto = Pick<UserPreview, 'displayName' | 'photoUrl'>
-
 
 
 /** @description Psuedo Document Model type. Reflects read access rules when requester.id !== userId */
