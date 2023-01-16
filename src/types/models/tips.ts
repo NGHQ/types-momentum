@@ -33,7 +33,7 @@ export type TipDocumentData = {
   thumbnailUrl: string;
 }; 
 
-export type TipStory = HyperTextTipStory | VideoTipStory | PollTipStory | VectorGraphicTipStory;
+export type TipStory = HyperTextTipStory | VideoTipStory | PollTipStory | VectorGraphicTipStory | ImageTipStory;
 
 export type HyperTextTipStory = {
   category: TipStoryCategory.HTML;
@@ -68,6 +68,11 @@ export type SurveyTipStory = {
   }
 }
 
+export type ImageTipStory = {
+  category: TipStoryCategory.IMAGE;
+  sourceUrl: string;
+}
+
 /**
  * @description Psuedo ID: ChoiceId is not a document ID
  */
@@ -97,6 +102,7 @@ export type GenreDocumentData = {
   tipsCount: number;
   colorHex: string;
   rank: number;
+  isDraft: boolean;
 } & (
   {
     globallyAvailable: true;

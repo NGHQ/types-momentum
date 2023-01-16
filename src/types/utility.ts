@@ -61,6 +61,7 @@ export type PeerId = UserId;
 
 export type CommunityId = DocumentId<'CommunityId'>;
 export type CommunityContentId = DocumentId<'CommunityContentId'>;
+export type NotificationId = DocumentId<'NotificationId'>;
 export type PostId = CommunityContentId;
 export type CommentId = CommunityContentId;
 export type ReplyId = CommunityContentId;

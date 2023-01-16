@@ -1,4 +1,4 @@
-import { UserInterest } from "../enum";
+import { Role, UserInterest } from "../enum";
 import { UserDocumentData } from "../types";
 
 export const defaultUserInterests = {
@@ -35,15 +35,18 @@ export const DaysOfWeek = {
 
 export const defaultUserDocumentData: Omit<
   UserDocumentData, 
-  'username' | 
-  'email' | 
-  'firstName' | 
-  'lastName' | 
-  'displayName' | 
-  'role' | 
-  'selectedCommunityId' |
   'createdAt'
 > = {
+    email: null, 
+    firstName: '', 
+    lastName: '', 
+    displayName: '', 
+    username: '',
+    role: {
+      root: Role.OUTSIDER, 
+      communities: {}
+    },
+    selectedCommunityId: null,
     bio: null, 
     photoUrl: null,
     links: {
