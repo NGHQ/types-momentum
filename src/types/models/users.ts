@@ -33,7 +33,7 @@ export type UserDocumentData = {
   username: string;
   firstName: string;
   lastName: string;
-  email: string;
+  email: OrNull<string>;
   displayName: string;
   bio: OrNull<string>;
   photoUrl: OrNull<string>;
