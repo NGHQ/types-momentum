@@ -10,7 +10,7 @@ export type UserNotificationDocumentData = SubCollectionOf<'notifications', {
    contentId: string;
    createdAt: Timestamp;
    hasRead: boolean;
-   creator: UserPreview;
+   creator: Pick<UserPreview, 'displayName' | 'photoUrl'>;
 }>;
 
 export type PushNotificationMessage = {
@@ -23,4 +23,5 @@ export type PushNotificationMessage = {
    delivery_time_of_day?: string;
    throttle_rate_per_minute?: number;
    url: string;
+   notificationId: string;
 };
