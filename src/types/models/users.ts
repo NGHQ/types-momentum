@@ -71,6 +71,11 @@ export type UserPreferences = {
     showTipsControl: boolean;
   };
   blockedUsers: UserId[];
+  onboarding: {
+    dreamJobs: string[];
+    dreamTeachers: string[];
+    skills: string[];
+  }
 };
 
 export type UserLinks = {
