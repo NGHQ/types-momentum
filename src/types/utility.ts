@@ -1,8 +1,8 @@
 import type { FirestoreTimestamp as UnNullableTimestamp } from './timestamp';
 
 import {
-  CollectionRootPaths, 
-  FirstDescendantPaths, 
+  CollectionRootPaths,
+  FirstDescendantPaths,
 } from '../enum';
 
 type ImmutablePrimitive = undefined | null | boolean | string | number | Function;
@@ -10,17 +10,17 @@ type ImmutablePrimitive = undefined | null | boolean | string | number | Functio
 
 
 export type Immutable<T> =
-    T extends ImmutablePrimitive ? T :
-    T extends Array<infer U> ? ImmutableArray<U> :
-    T extends Map<infer K, infer V> ? ImmutableMap<K, V> :
-    T extends Set<infer M> ? ImmutableSet<M> : ImmutableObject<T>;
+  T extends ImmutablePrimitive ? T :
+  T extends Array<infer U> ? ImmutableArray<U> :
+  T extends Map<infer K, infer V> ? ImmutableMap<K, V> :
+  T extends Set<infer M> ? ImmutableSet<M> : ImmutableObject<T>;
 
 export type ImmutableArray<T> = ReadonlyArray<Immutable<T>>;
 export type ImmutableMap<K, V> = ReadonlyMap<Immutable<K>, Immutable<V>>;
 export type ImmutableSet<T> = ReadonlySet<Immutable<T>>;
 export type ImmutableObject<T> = { readonly [K in keyof T]: Immutable<T[K]> };
 
-export type Mutable<T> = 
+export type Mutable<T> =
   T extends ImmutablePrimitive ? T :
   T extends ImmutableArray<infer U> ? Array<U> :
   T extends ImmutableMap<infer K, infer V> ? Map<K, V> :
@@ -32,7 +32,7 @@ type ArrayLengthMutationKeys = 'splice' | 'push' | 'pop' | 'shift' | 'unshift' |
 type ArrayItems<T extends Array<unknown>> = T extends Array<infer TItems> ? TItems : never
 export type FixedLengthArray<T extends unknown[]> =
   Pick<T, Exclude<keyof T, ArrayLengthMutationKeys>>
-  & { [Symbol.iterator]: () => IterableIterator< ArrayItems<T> > }
+  & { [Symbol.iterator]: () => IterableIterator<ArrayItems<T>> }
 
 export type OrNull<T> = T | null;
 
@@ -75,4 +75,5 @@ export type TipId = DocumentId<'TipId'>;
 export type UserSurveyId = DocumentId<'UserSurveyId'>;
 export type PollId = DocumentId<'PollId'>;
 export type GenreId = Flavor<string, 'GenreId'>
+export type PlaylistId = Flavor<string, 'PlaylistId'>;
 export type TagId = DocumentId<'TagId'>
