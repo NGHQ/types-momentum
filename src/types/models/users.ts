@@ -73,9 +73,9 @@ export type UserPreferences = {
   };
   blockedUsers: UserId[];
   onboarding: {
-    dreamJobs?: OnboardingMetaDocumentData['dreamJobs'];
-    dreamTeachers?: OnboardingMetaDocumentData['dreamTeachers'];
-    skills?: OnboardingMetaDocumentData['skills'];
+    dreamJobs: OnboardingMetaDocumentData['dreamJobs'];
+    dreamTeachers: OnboardingMetaDocumentData['dreamTeachers'];
+    skills: OnboardingMetaDocumentData['skills'];
   }
 };
 
