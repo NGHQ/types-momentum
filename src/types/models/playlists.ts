@@ -11,7 +11,7 @@ export type PlaylistDocumentData = {
     isDraft: boolean;
 }
 
-export type TipDocumentData = {
+export type UserTipDocumentData = {
     title: string;
     rank: number;
     playlistId: string;

@@ -6,6 +6,8 @@ export * from './models/tips';
 export * from './models/users';
 export * from './models/culled';
 export * from './models/reports';
+export * from './models/userTipActivities';
+export * from './models/playlists';
 export * from './callables';
 export * from './models/notifications';
 
