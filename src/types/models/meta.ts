@@ -14,4 +14,7 @@ export type VersionMeta = {
 
 export type OnboardingMetaDocumentData = {
   onboardingTipId: string;
+  dreamJobs: string[];
+  dreamTeachers: string[];
+  skills: string[];
 }
