@@ -80,9 +80,7 @@ export const defaultUserDocumentData: Omit<
     tips: {
       streakCount: 0, 
       dailyTipId: null,
-      lastTipCompletedAt: null, 
-      lastTipCompletedId: null, 
-      record: {}, 
+      lastCompletedTip: null,
       runningStreak: [
         { didWatch: false, isoTime: '1970-01-01T00:00:00.000Z' },
         { didWatch: false, isoTime: '1970-01-01T00:00:00.000Z' },
@@ -91,7 +89,8 @@ export const defaultUserDocumentData: Omit<
         { didWatch: false, isoTime: '1970-01-01T00:00:00.000Z' },
         { didWatch: false, isoTime: '1970-01-01T00:00:00.000Z' },
         { didWatch: false, isoTime: '1970-01-01T00:00:00.000Z' },
-      ]
+      ],
+      bookmarkedTips: [], 
     }, 
     userSurvey: {}
 }

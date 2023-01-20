@@ -107,16 +107,14 @@ export type UserTips = {
     DayStreak,
     DayStreak,
   ]>;
-  lastTipCompletedAt: Timestamp;
-  lastTipCompletedId: OrNull<TipId>;
-  lastCompletedTip: {
+  lastCompletedTip: OrNull<{
     completedQuant: number;
     playlistQuant: number;
     tipTitle: string;
     playlistId: string;
     completedAt: Timestamp;
     tipId: string;
-  },
+  }>;
   bookmarkedTips: TipId[];
    /**@deprecated */
    dailyTipId: OrNull<TipId>;
