@@ -65,7 +65,12 @@ export const defaultUserDocumentData: Omit<
         showOnboarding: true, 
         showTipsControl: true
       },
-      blockedUsers: [] 
+      blockedUsers: [],
+      onboarding: {
+        dreamJobs: [], 
+        dreamTeachers: [], 
+        skills: []
+      }
     }, 
     directline: {
       lastReadDialogue: null

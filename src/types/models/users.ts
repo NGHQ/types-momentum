@@ -16,6 +16,7 @@ import type {
   UserSurveyId,
   UserId,
 } from './../utility'
+import { OnboardingMetaDocumentData } from './meta';
 import { UserSurveyChoice } from './tips';
 
 export type UserRole = {
@@ -71,6 +72,11 @@ export type UserPreferences = {
     showTipsControl: boolean;
   };
   blockedUsers: UserId[];
+  onboarding: {
+    dreamJobs: OnboardingMetaDocumentData['dreamJobs'];
+    dreamTeachers: OnboardingMetaDocumentData['dreamTeachers'];
+    skills: OnboardingMetaDocumentData['skills'];
+  }
 };
 
 export type UserLinks = {
