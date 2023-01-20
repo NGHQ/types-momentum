@@ -15,6 +15,7 @@ import type {
   FixedLengthArray,
   UserSurveyId,
   UserId,
+  SubCollectionOf,
 } from './../utility'
 import { OnboardingMetaDocumentData } from './meta';
 import { UserSurveyChoice } from './tips';
@@ -27,6 +28,7 @@ export type UserRole = {
   }>;
 };
 
+/**@deprecated use user subcollection */
 export type UserTipsDocumentData = UserTips;
 
 export type UserDocumentData = {
@@ -50,7 +52,6 @@ export type UserDocumentData = {
     pinned: boolean;
   }>;
   selectedCommunityId: OrNull<CommunityId>;
-  /** @deprecated use UserTipsDocument */
   tips: UserTips;
   userSurvey: Record<UserSurveyId, {
     '0': UserSurveyChoice;
@@ -106,17 +107,25 @@ export type UserTips = {
     DayStreak,
     DayStreak,
   ]>;
-  dailyTipId: OrNull<TipId>;
   lastTipCompletedAt: Timestamp;
   lastTipCompletedId: OrNull<TipId>;
-  record: Record<TipId, {
-    completed: boolean;
+  lastCompletedTip: {
+    completedQuant: number;
+    playlistQuant: number;
+    tipTitle: string;
+    playlistId: string;
     completedAt: Timestamp;
-    bookmarked: boolean;
-    lastShownAsDailyTipAt: Timestamp;
-    lastSeen: Timestamp;
-  }>;
+    tipId: string;
+  },
+  bookmarkedTips: TipId[];
+   /**@deprecated */
+   dailyTipId: OrNull<TipId>;
 };
+
+/** @description  subcollection key = 'userPlaylistRecords, document key = [PlaylistId] */
+export type UserPlaylistRecordSubDocumentData = SubCollectionOf<'users', {
+  completedIds: TipId[];
+}>;
 
 export type UserPreview = Pick<
   UserDocumentData,

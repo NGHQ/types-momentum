@@ -17,6 +17,7 @@ export type TipTag = {
   title: string;
 } 
 
+/** @deprecated use TipSubDocumentData */
 export type TipDocumentData = {
   title: string;
   isDraft: boolean;

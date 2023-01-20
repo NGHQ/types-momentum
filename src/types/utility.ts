@@ -71,6 +71,7 @@ export type DialogueId = DocumentId<'DialogueId'>;
 export type ConversationId = DocumentId<'ConversationId'>;
 export type MessageId = DocumentId<'MessageId'>;
 
+export type PlaylistId = DocumentId<'PlaylistId'>;
 export type TipId = DocumentId<'TipId'>;
 export type UserSurveyId = DocumentId<'UserSurveyId'>;
 export type PollId = DocumentId<'PollId'>;
