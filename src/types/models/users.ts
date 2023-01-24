@@ -115,7 +115,10 @@ export type UserTips = {
     completedAt: Timestamp;
     tipId: string;
   }>;
-  bookmarkedTips: TipId[];
+  bookmarkedTips: Array<{
+    tipId: string;
+    title: string;
+  }>;
    /**@deprecated */
    dailyTipId: OrNull<TipId>;
 };
