@@ -125,8 +125,9 @@ export type UserTips = {
 
 /** @description  subcollection key = 'userPlaylistRecords, document key = [PlaylistId] */
 export type UserPlaylistRecordSubDocumentData = SubCollectionOf<'users', {
-  completedIds: TipId[];
+  completedIds: Record<TipId, boolean>;
 }>;
+
 
 export type UserPreview = Pick<
   UserDocumentData,
