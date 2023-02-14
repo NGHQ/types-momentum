@@ -12,9 +12,15 @@ export type VersionMeta = {
   currentMajor: number;
 }
 
+export type OnboardingQuestion = {
+  question: string;
+  description: string;
+  options: string[];
+}
+
 export type OnboardingMetaDocumentData = {
   onboardingTipId: string;
-  dreamJobs: string[];
-  dreamTeachers: string[];
-  skills: string[];
+  onboardingQuestionOne: OnboardingQuestion;
+  onboardingQuestionTwo: OnboardingQuestion;
+  onboardingQuestionThree: OnboardingQuestion;
 }
