@@ -1,6 +1,7 @@
 import { SubCollectionOf, Timestamp, UserId } from "../utility";
 import { TipStory, TipTag } from "./tips";
 
+/** @note rank < 0 signifies in draft status previously isDraft = true**/
 export type PlaylistDocumentData = {
   title: string;
   rank: number;
@@ -8,6 +9,7 @@ export type PlaylistDocumentData = {
   thumbnailUrl: string;
   creatorId: UserId;
   createdAt: Timestamp;
+  /**@deprecated */
   isDraft: boolean;
 }
 
