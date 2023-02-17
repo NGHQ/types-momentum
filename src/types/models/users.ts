@@ -74,11 +74,16 @@ export type UserPreferences = {
   };
   blockedUsers: UserId[];
   onboarding: {
-    dreamJobs: OnboardingMetaDocumentData['dreamJobs'];
-    dreamTeachers: OnboardingMetaDocumentData['dreamTeachers'];
-    skills: OnboardingMetaDocumentData['skills'];
+    question1: OnboardingAnswer;
+    question2: OnboardingAnswer;
+    question3: OnboardingAnswer;
   }
 };
+
+export type OnboardingAnswer = {
+  options: string[];
+  question: string;
+}
 
 export type UserLinks = {
   instagram: OrNull<string>;

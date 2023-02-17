@@ -67,9 +67,18 @@ export const defaultUserDocumentData: Omit<
       },
       blockedUsers: [],
       onboarding: {
-        dreamJobs: [], 
-        dreamTeachers: [], 
-        skills: []
+        question1: {
+          options: [],
+          question: ''
+        }, 
+        question2: {
+          options: [],
+          question: ''
+        },
+        question3: {
+          options: [],
+          question: ''
+        },
       }
     }, 
     directline: {
