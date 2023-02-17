@@ -67,15 +67,15 @@ export const defaultUserDocumentData: Omit<
       },
       blockedUsers: [],
       onboarding: {
-        question1: {
+        onboardingQuestionOne: {
           options: [],
           question: ''
         }, 
-        question2: {
+        onboardingQuestionTwo: {
           options: [],
           question: ''
         },
-        question3: {
+        onboardingQuestionThree: {
           options: [],
           question: ''
         },
