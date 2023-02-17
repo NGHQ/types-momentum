@@ -74,9 +74,9 @@ export type UserPreferences = {
   };
   blockedUsers: UserId[];
   onboarding: {
-    question1: OnboardingAnswer;
-    question2: OnboardingAnswer;
-    question3: OnboardingAnswer;
+    onboardingQuestionOne: OnboardingAnswer;
+    onboardingQuestionTwo: OnboardingAnswer;
+    onboardingQuestionThree: OnboardingAnswer;
   }
 };
 
