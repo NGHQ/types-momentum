@@ -89,5 +89,5 @@ export type CallGetPickedForYouPlaylistTip = Callable<
   Pick<TipSubDocumentData, 
     'playlistId' | 
     'title'
-  > & {id: TipId}
+  > & {id: TipId, playlistTitle: string}
 >;
