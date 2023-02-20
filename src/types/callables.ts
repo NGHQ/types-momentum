@@ -1,3 +1,4 @@
+import { TipSubDocumentData } from './models/playlists';
 import { TipDocumentData } from './models/tips';
 import { PeerDocumentData, UserPreview } from './models/users';
 import { CommunityId, TipId, UserId } from './utility';
@@ -26,6 +27,7 @@ export type AllCallables = {
   'callCheckEmailInCulled': CallCheckEmailInCulled;
   'callGetCommunityMemberPreviews': CallGetCommunityMemberPreviews;
   'callGetPeerDocument': CallGetPeerDocument;
+  'callGetPickedForYouPlaylistTip': CallGetPickedForYouPlaylistTip;
 }
 
 export type CallHealth = Callable<
@@ -78,4 +80,14 @@ export type CallGetPeerDocument = Callable<
     userId: UserId;
   },
   PeerDocumentData
+>;
+
+export type CallGetPickedForYouPlaylistTip = Callable<
+  {
+    userId: UserId;
+  }, 
+  Pick<TipSubDocumentData, 
+    'playlistId' | 
+    'title'
+  > & {id: TipId}
 >;

@@ -17,7 +17,6 @@ import type {
   UserId,
   SubCollectionOf,
 } from './../utility'
-import { OnboardingMetaDocumentData } from './meta';
 import { UserSurveyChoice } from './tips';
 
 export type UserRole = {
