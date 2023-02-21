@@ -120,7 +120,7 @@ export type UserTips = {
     completedAt: Timestamp;
     tipId: string;
   }>;
-  // bookmarkedTips: PlaylistTipPreview[];
+  bookmarkedTips: PlaylistTipPreview[];
    /**@deprecated */
    dailyTipId: OrNull<TipId>;
 };
