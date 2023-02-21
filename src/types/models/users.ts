@@ -17,6 +17,7 @@ import type {
   UserId,
   SubCollectionOf,
 } from './../utility'
+import { PlaylistTipPreview } from './playlists';
 import { UserSurveyChoice } from './tips';
 
 export type UserRole = {
@@ -119,10 +120,7 @@ export type UserTips = {
     completedAt: Timestamp;
     tipId: string;
   }>;
-  bookmarkedTips: Array<{
-    tipId: string;
-    title: string;
-  }>;
+  // bookmarkedTips: PlaylistTipPreview[];
    /**@deprecated */
    dailyTipId: OrNull<TipId>;
 };

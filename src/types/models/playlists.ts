@@ -1,4 +1,4 @@
-import { SubCollectionOf, Timestamp, UserId } from "../utility";
+import { PlaylistId, SubCollectionOf, Timestamp, TipId, UserId } from "../utility";
 import { TipStory, TipTag } from "./tips";
 
 /** @note rank < 0 signifies in draft status previously isDraft = true**/
@@ -23,3 +23,10 @@ export type TipSubDocumentData = SubCollectionOf<'playlists', {
   creatorId: UserId;
   createdAt: Timestamp;
 }>;
+
+export type PlaylistTipPreview = {
+  tipId: TipId;
+  playlistId: PlaylistId;
+  playlistTitle: string;
+  tipTitle: string;
+}

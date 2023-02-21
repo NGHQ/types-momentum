@@ -1,4 +1,4 @@
-import { TipSubDocumentData } from './models/playlists';
+import { PlaylistTipPreview } from './models/playlists';
 import { TipDocumentData } from './models/tips';
 import { PeerDocumentData, UserPreview } from './models/users';
 import { CommunityId, TipId, UserId } from './utility';
@@ -86,8 +86,5 @@ export type CallGetPickedForYouPlaylistTip = Callable<
   {
     userId: UserId;
   }, 
-  Pick<TipSubDocumentData, 
-    'playlistId' | 
-    'title'
-  > & {id: TipId, playlistTitle: string}
+  PlaylistTipPreview
 >;
