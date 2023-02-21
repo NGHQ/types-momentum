@@ -17,6 +17,7 @@ export type PlaylistDocumentData = {
 export type TipSubDocumentData = SubCollectionOf<'playlists', {
   title: string;
   rank: number;
+  playlistTitle: string;
   playlistId: string;
   stories: TipStory[];
   tags: TipTag[];
