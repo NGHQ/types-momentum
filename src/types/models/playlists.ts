@@ -1,5 +1,5 @@
 import { PlaylistId, SubCollectionOf, Timestamp, TipId, UserId } from "../utility";
-import { TipStory, TipTag } from "./tips";
+import { ChoiceId, TipStory, TipTag } from "./tips";
 
 /** @note rank < 0 signifies in draft status previously isDraft = true**/
 export type PlaylistDocumentData = {
@@ -17,6 +17,8 @@ export type PlaylistDocumentData = {
 export type TipSubDocumentData = SubCollectionOf<'playlists', {
   title: string;
   rank: number;
+  pollRecord: Record<ChoiceId, number>;
+  pollVoteCount: number;
   playlistTitle: string;
   playlistId: string;
   stories: TipStory[];
